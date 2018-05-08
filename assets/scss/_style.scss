@@ -1065,10 +1065,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom {
   }
   .lg-has-vimeo {
     .lg-video-play {
-      background: url(/img/vimeo-play.png?e23aab8d0501613861dbff2c2209b47d) no-repeat scroll 0 0 transparent;
+      background: url(../img/vimeo-play.png?e23aab8d0501613861dbff2c2209b47d) no-repeat scroll 0 0 transparent;
     }
     &:hover .lg-video-play {
-      background: url(/img/vimeo-play.png?e23aab8d0501613861dbff2c2209b47d) no-repeat scroll 0 -58px transparent;
+      background: url(../img/vimeo-play.png?e23aab8d0501613861dbff2c2209b47d) no-repeat scroll 0 -58px transparent;
     }
   }
   .lg-has-html5 {
@@ -1079,7 +1079,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom {
       margin-left: -32px;
 
       opacity: .8;
-      background: transparent url(/img/video-play.png?762da7eee8798a30cdfec0ddd050e4ef) no-repeat scroll 0 0;
+      background: transparent url(../img/video-play.png?762da7eee8798a30cdfec0ddd050e4ef) no-repeat scroll 0 0;
     }
     &:hover .lg-video-play {
       opacity: 1;
@@ -1087,10 +1087,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom {
   }
   .lg-has-youtube {
     .lg-video-play {
-      background: url(/img/youtube-play.png?3f0bd350ffa6237d014d3f00ef85dc47) no-repeat scroll 0 0 transparent;
+      background: url(../img/youtube-play.png?3f0bd350ffa6237d014d3f00ef85dc47) no-repeat scroll 0 0 transparent;
     }
     &:hover .lg-video-play {
-      background: url(/img/youtube-play.png?3f0bd350ffa6237d014d3f00ef85dc47) no-repeat scroll 0 -60px transparent;
+      background: url(../img/youtube-play.png?3f0bd350ffa6237d014d3f00ef85dc47) no-repeat scroll 0 -60px transparent;
     }
   }
   .lg-video-object {
@@ -1589,7 +1589,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom {
   .lg-item {
     display: none !important;
 
-    background: url(/img/loading.gif?87776ebd3eb7c2685c351a391de60b7b) no-repeat scroll center center transparent;
+    background: url(../img/loading.gif?87776ebd3eb7c2685c351a391de60b7b) no-repeat scroll center center transparent;
   }
   &.lg-css3 {
     .lg-prev-slide,

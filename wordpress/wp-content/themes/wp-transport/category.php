@@ -2,6 +2,7 @@
   <article>
 
     <h1 class="cat-title inner-title"><?php the_category(', '); ?></h1>
+    <?php category_description(); ?>
     <?php get_template_part('loop'); ?>
     <?php get_template_part('pagination'); ?>
 

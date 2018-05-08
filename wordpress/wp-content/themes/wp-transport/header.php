@@ -20,28 +20,124 @@
   <!-- css + javascript -->
   <?php wp_head(); ?>
 </head>
+
+<?php $front__id = (int)(get_option( 'page_on_front' )); ?>
+
 <body <?php body_class(); ?>>
-<!-- wrapper -->
-<div class="wrapper">
-  <header role="banner">
-    <div class="inner">
+  <header class="header dot-w">
+    <div class="container">
+      <div class="header-desktop">
+        <div class="row">
+          <div class="header-l">
+            <?php if ( !is_front_page() && !is_home() ){ ?>
+              <a href="<?php echo home_url(); ?>" class="header__logotype">
+            <?php } else { ?>
+              <span class="header__logotype">
+            <?php } ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/img/logotype.png" alt="<?php wp_title( '' ); ?>" title="<?php wp_title( '' ); ?>" class="logo-img">
+            <?php if ( !is_front_page() && !is_home() ){ ?>
+              </a>
+            <?php } else { ?>
+              </span>
+            <?php } ?>
+          </div>
 
-      <div class="logo">
-        <?php if ( !is_front_page() && !is_home() ){ ?>
-          <a href="<?php echo home_url(); ?>">
-        <?php } ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="<?php wp_title( '' ); ?>" title="<?php wp_title( '' ); ?>" class="logo-img">
-        <?php if ( !is_front_page() && !is_home() ){ ?>
-          </a>
-        <?php } ?>
-      </div><!-- /logo -->
+          <div class="header-r ml-2 mr-3">
+            <div class="header__top">
+              <div class="row mb-3">
+                <div class="col-md-4 col-lg-4">
+                  <a href="<?php echo home_url(); ?>" rel='nofollow' class="logo-text"><?php the_field('head_slogan', $front__id); ?></a>
+                </div>
 
-      <nav class="nav" role="navigation">
-        <?php wpeHeadNav(); ?>
-      </nav><!-- /nav -->
+                <?php if( have_rows('head_phones', $front__id) ): ?>
+                  <?php while ( have_rows('head_phones', $front__id) ) : the_row(); ?>
+                    <div class="col-md-4 col-lg-3 text-right">
+                      <div class="header__phone">
+                        <div><?php the_sub_field('title'); ?></div>
+                        <div><a href="tel:<?php echo preg_replace("/[^0-9]/","",get_sub_field('tel_number')); ?>"><?php the_sub_field('tel_number'); ?></a></div>
+                      </div>
+                    </div>
+                  <?php  endwhile; ?>
+                <?php endif; ?>
 
-    </div><!-- /.inner -->
-  </header><!-- /header -->
+                <div class="col-md-4 col-lg-2 d-flex justify-content-end">
+                  <button type="button" class="boton" data-toggle="modal" data-target="#callback">Заказать звонок</button>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-start">
+              <div class="mr-4">
+              </div>
+              <div class="header__menu-wrapper">
+                <nav class="header-menu">
+                  <?php wpeHeadNav(); ?>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <!-- / Правая часть шапка. -->
+        </div>
+        <!-- / .row -->
+      </div>
+      <div class="header-mobile">
+        <div class="header-mobile__inner">
+            <?php if ( !is_front_page() && !is_home() ){ ?>
+              <a href="<?php echo home_url(); ?>" class="header__logotype">
+            <?php } else { ?>
+              <span class="header__logotype">
+            <?php } ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/img/logotype.png" alt="<?php wp_title( '' ); ?>" title="<?php wp_title( '' ); ?>" class="logo-img">
+            <?php if ( !is_front_page() && !is_home() ){ ?>
+              </a>
+            <?php } else { ?>
+              </span>
+            <?php } ?>
+          <div class="d-flex align-items-center hidden-md-down">
+                <?php if( have_rows('head_phones', $front__id) ): ?>
+                  <?php while ( have_rows('head_phones', $front__id) ) : the_row(); ?>
+                      <div class="header__phone ml-3">
+                        <div><?php the_sub_field('title'); ?></div>
+                        <div><a href="tel:<?php echo preg_replace("/[^0-9]/","",get_sub_field('tel_number')); ?>"><?php the_sub_field('tel_number'); ?></a></div>
+                      </div>
+                  <?php  endwhile; ?>
+                <?php endif; ?>
 
-  <section role="main">
-    <div class="inner">
+            <div class="boton ml-3" data-toggle="modal" data-target="#callback">Заказать звонок</div>
+          </div>
+          <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="header-mobile-panel-layer"></div>
+  <div class="header-mobile-panel">
+    <div class="mb-3">
+      <div class="d-flex">
+            <?php if ( !is_front_page() && !is_home() ){ ?>
+              <a href="<?php echo home_url(); ?>" class="header__logotype">
+            <?php } else { ?>
+              <span class="header__logotype">
+            <?php } ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/img/logotype.png" alt="<?php wp_title( '' ); ?>" title="<?php wp_title( '' ); ?>" class="logo-img">
+            <?php if ( !is_front_page() && !is_home() ){ ?>
+              </a>
+            <?php } else { ?>
+              </span>
+            <?php } ?>
+        <div class="ml-3">
+          <a href="<?php echo home_url(); ?>" class="logo-text mb-2"><?php the_field('head_slogan', $front__id); ?></a>
+          <div><a href="tel:<?php echo preg_replace('/[^0-9]/','',get_field('head_phones')[0]['tel_number']); ?>"><?php echo get_field('head_phones')[0]['tel_number'];?></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="header-mobile-panel__buttons">
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#callback">Заказать звонок</button>
+    </div>
+    <nav class="header-menu">
+      <?php wpeHeadNav(); ?>
+    </nav>
+  </div>

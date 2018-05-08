@@ -1,0 +1,2 @@
+$(document).ready(function(){$(".boton").each(function(){$(this).wrapInner("<div class=botontext></div>"),$(this).find(".botontext").clone().appendTo($(this));for(var t=0;t<4;++t)$(this).append('<span class="twist"></span>');$(this).find(".twist").css("width","25%").css("width","+=3px")}),$(window).resize(function(){$(".boton").each(function(){$(this).find(".twist").css("width","25%").css("width","+=3px")})})});
+//# sourceMappingURL=maps/button.js.map

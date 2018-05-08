@@ -2,24 +2,25 @@
 Contributors: johnbillion
 Tags: ajax, debug, debug-bar, debugging, development, developer, performance, profiler, profiling, queries, query monitor, rest-api
 Requires at least: 3.7
-Tested up to: 4.8
-Stable tag: 2.14.0
+Tested up to: 4.9
+Stable tag: 3.0.0
 License: GPLv2 or later
 
-View debugging and performance information on database queries, hooks, conditionals, HTTP requests, redirects and more.
+Query Monitor is the Developer Tools panel for WordPress.
 
 == Description ==
 
-Query Monitor is a debugging plugin for anyone developing with WordPress. It has some advanced features not available in other debugging plugins, including debugging of AJAX calls, REST API requests, redirects, and the ability to narrow down its output by plugin or theme.
+Query Monitor is the Developer Tools panel for WordPress. It includes some advanced features not available in other debugging plugins, including Ajax and REST API debugging, and the ability to narrow down its output by plugin or theme.
+
+Query Monitor focuses heavily on presenting its information in a useful manner. It adds an admin toolbar menu showing an overview of the current page, with complete data shown in a panel once you select an item.
 
 For complete information, please see [Query Monitor's GitHub repo](https://github.com/johnbillion/query-monitor).
 
-Here's an overview of what's shown:
+Here's an overview of some of what's shown:
 
 = Database Queries =
 
  * Shows all database queries performed on the current request
- * Shows affected rows and time for all queries
  * Shows notifications for slow queries, duplicate queries, and queries with errors
  * Filter queries by query type (`SELECT`, `UPDATE`, `DELETE`, etc)
  * Filter queries by component (WordPress core, Plugin X, Plugin Y, theme)
@@ -32,7 +33,6 @@ Filtering queries by component or calling function makes it easy to see which pl
 = Hooks =
 
  * Shows all hooks fired on the current request, along with hooked actions, their priorities, and their components
- * Filter hooks by part of their name
  * Filter actions by component (WordPress core, Plugin X, Plugin Y, theme)
 
 = Theme =
@@ -40,8 +40,6 @@ Filtering queries by component or calling function makes it easy to see which pl
  * Shows the template filename for the current request
  * Shows the complete template hierarchy for the current request (WordPress 4.7+)
  * Shows all template parts used on the current request
- * Shows the available body classes for the current request
- * Shows the active theme name
 
 = PHP Errors =
 
@@ -50,14 +48,8 @@ Filtering queries by component or calling function makes it easy to see which pl
 
 = Request =
 
- * Shows matched rewrite rules and associated query strings
  * Shows query vars for the current request, and highlights custom query vars
- * Shows the queried object details
- * Shows details of the current blog (multisite only) and current site (multi-network only)
-
-= Rewrite Rules =
-
- * Shows all matching rewrite rules for the current request
+ * Shows all matched rewrite rules and associated query strings
 
 = Scripts & Styles =
 
@@ -75,6 +67,10 @@ Filtering queries by component or calling function makes it easy to see which pl
  * Shows the response code, call stack, component, timeout, and time taken
  * Highlights erroneous responses, such as failed requests and anything without a `200` response code
 
+= User Capability Checks =
+
+ * Shows every user capability check that is performed on the page, along with the result and any parameters passed along with the capability check.
+
 = Redirects =
 
  * Whenever a redirect occurs, Query Monitor adds an `X-QM-Redirect` HTTP header containing the call stack, so you can use your favourite HTTP inspector or browser developer tools to easily trace where a redirect has come from
@@ -91,43 +87,17 @@ The response from an authenticated WordPress REST API (v2 or later) request will
 
 Currently this includes PHP errors and some overview information such as memory usage, but this will be built upon in future versions.
 
-= Admin Screen =
-
- * Shows the correct names for custom column filters and actions on all admin screens that have a listing table
- * Shows the state of `get_current_screen()` and a few variables
-
-= Environment Information =
-
- * Shows various PHP information such as memory limit and error reporting levels
- * Highlights the fact when any of these are overridden at runtime
- * Shows various MySQL information, including caching and performance related configuration
- * Highlights the fact when any performance related configurations are not optimal
- * Shows various details about WordPress and the web server
- * Shows version numbers for all the things
-
-= Everything Else =
-
- * Shows any transients that were set, along with their timeout, component, and call stack
- * Shows all WordPress conditionals on the current request, highlighted nicely
- * Shows an overview at the top, including page generation time and memory limit as absolute values and as % of their respective limits
-
 = Authentication =
 
 By default, Query Monitor's output is only shown to Administrators on single-site installs, and Super Admins on Multisite installs.
 
 In addition to this, you can set an authentication cookie which allows you to view Query Monitor output when you're not logged in (or if you're logged in as a non-administrator). See the bottom of Query Monitor's output for details.
 
-== Installation ==
-
-Install Query Monitor just like any other plugin.
-
-If you don't know how to do that, then Query Monitor is not for you.
-
 == Screenshots ==
 
 1. The admin toolbar menu showing an overview
 2. Aggregate database queries by component
-3. Slow database queries highlighted in a separate panel
+3. User capability checks with an active filter
 4. Database queries complete with filter controls
 5. Hooks and actions
 6. HTTP requests (showing an HTTP error)
@@ -145,9 +115,9 @@ In addition to this, you can set an authentication cookie which allows you to vi
 
 Short answer: Yes, but only a little.
 
-Long answer: Query Monitor has a small impact on page generation time because it hooks into a few places in WordPress in the same way that other plugins do. The impact is negligible.
+Long answer: Query Monitor has a small impact on page generation time because it hooks into WordPress in the same way that other plugins do. The impact is low; typically between 10ms and 100ms depending on the complexity of your site.
 
-On pages that have an especially high number of database queries (in the hundreds), Query Monitor currently uses more memory than I would like it to. This is due to the amount of data that is captured in the stack trace for each query. I have been and will be working to continually reduce this.
+Query Monitor's memory usage typically accounts for around 10% of the total memory used to generate the page.
 
 = Are there any add-on plugins for Query Monitor? =
 

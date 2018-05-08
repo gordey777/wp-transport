@@ -39,7 +39,10 @@ function wpeStyles()  {
   wp_dequeue_style('wp_dequeue_style');
 
   wp_register_style('wpeasy-style', get_template_directory_uri() . '/css/main.css', array(), '1.0', 'all');
-  wp_enqueue_style('wpeasy-style'); // Enqueue it!
+  wp_enqueue_style('wpeasy-style');
+
+  wp_register_style('wpeasy-faw', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), '1.0', 'all');
+  wp_enqueue_style('wpeasy-faw'); // Enqueue it!
 }
 
 add_action('init', 'wpeHeaderScripts'); // Add Scripts to wp_head
@@ -58,6 +61,10 @@ function wpeHeaderScripts() {
     wp_deregister_script( 'jquery-form' );
 
     //  Load footer scripts (footer.php)
+
+    wp_register_script('wpeScriptsApp', get_template_directory_uri() . '/js/application.js', array(), '1.0.0', true);
+    wp_enqueue_script('wpeScriptsApp');
+
     wp_register_script('wpeScripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0', true);
     wp_enqueue_script('wpeScripts');
 
@@ -117,9 +124,9 @@ function wpeHeadNav() {
     'after'           => '',
     'link_before'     => '',
     'link_after'      => '',
-    'items_wrap'      => '<ul class="headnav">%3$s</ul>',
+    'items_wrap'      => '<ul class="header-menu__first-level headnav">%3$s</ul>',
     'depth'           => 0,
-    'walker'          => ''
+    'walker'          => new WPE_Sublevel_Walker
     )
   );
 }
@@ -682,5 +689,38 @@ function disable_emojicons_tinymce( $plugins ) {
     return array();
   }
 }
+
+
+
+class WPE_Sublevel_Walker extends Walker_Nav_Menu {
+
+    function start_lvl(&$output, $depth) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "\n$indent<div class=\"header-menu__second-level\"><ul class=\"sub-menu\">\n";
+    }
+    function end_lvl(&$output, $depth) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "$indent</ul></div>\n";
+    }
+}
+
+
+
+function remove_head_scripts() {
+   remove_action('wp_head', 'wp_print_scripts');
+   remove_action('wp_head', 'wp_print_head_scripts', 9);
+   remove_action('wp_head', 'wp_enqueue_scripts', 1);
+
+   add_action('wp_footer', 'wp_print_scripts', 5);
+   add_action('wp_footer', 'wp_enqueue_scripts', 5);
+   add_action('wp_footer', 'wp_print_head_scripts', 5);
+}
+add_action( 'wp_enqueue_scripts', 'remove_head_scripts' );
+
+
+remove_filter( 'pre_term_description', 'wp_filter_kses' );
+remove_filter( 'term_description', 'wp_kses_data' );
+
+
 
 ?>
