@@ -1,0 +1,36 @@
+
+
+/* Start:/local/templates/ast/components/bitrix/news/services2/bitrix/news.list/.default/style.css?1511861512398*/
+.services-list
+{
+
+}
+
+.services-list .item a
+{
+	overflow: hidden;
+	text-decoration: none;
+}
+
+.services-list .img
+{
+	padding-bottom: 70%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	display: block;
+	width: 100%;
+}
+
+.services-list .name
+{
+	margin-bottom: 15px;
+	background-color: #ff9a0d;
+	color: #fff;
+	padding: 5px 10px;
+	display: block;
+	
+	height: 60px;
+}
+/* End */
+/* /local/templates/ast/components/bitrix/news/services2/bitrix/news.list/.default/style.css?1511861512398 */

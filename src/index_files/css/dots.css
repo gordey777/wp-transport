@@ -1,0 +1,350 @@
+@font-face {
+    font-family: 'Molot';
+    src: url('../fonts/Molot.eot');
+    src: url('../fonts/Molot.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Molot.woff2') format('woff2'),
+    url('../fonts/Molot.woff') format('woff'),
+    url('../fonts/Molot.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    overflow-x: hidden;
+}
+
+.boton {
+    width: 200px;
+    height: 50px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    line-height: 50px;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+}
+
+.botontext {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.twist {
+    display: block;
+    height: 100%;
+    width: 25%;
+    position: relative;
+    float: left;
+    margin-left: -4px;
+}
+
+.twist:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #ff9a0d;
+    bottom: 100%;
+    left: 0;
+    position: absolute;
+    transform-origin: center bottom 0px;
+    transform: matrix3d(1, 0, 0, 0,
+    0, 0, -1, -0.003,
+    0, 1, 0, 0,
+    0, 0, 0, 1);
+
+    -webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    -moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    -o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+}
+
+.twist:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    height: 100%;
+    background: #fff;
+    transform-origin: center top 0px;
+    transform: matrix3d(1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, -0.003,
+    0, -50, 0, 1);
+
+    -webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    -moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    -o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+}
+
+.boton:hover .twist:before {
+    background: #ff9a0d;
+    transform: matrix3d(1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0.003,
+    0, 50, 0, 1);
+}
+
+.boton:hover .twist:after {
+    background: #ff9a0d;
+    transform: matrix3d(1, 0, 0, 0,
+    0, 0, -1, 0.003,
+    0, 1, 0, 0,
+    0, 0, 0, 1);
+}
+
+.boton .twist:nth-of-type(1) {
+    margin-left: 0;
+}
+
+.boton .twist:nth-of-type(1):before,
+.boton .twist:nth-of-type(1):after {
+    transition-delay: 0s;
+}
+
+.boton .twist:nth-of-type(2):before,
+.boton .twist:nth-of-type(2):after {
+    transition-delay: 0.1s;
+}
+
+.boton .twist:nth-of-type(3):before,
+.boton .twist:nth-of-type(3):after {
+    transition-delay: 0.2s;
+}
+
+.boton .twist:nth-of-type(4):before,
+.boton .twist:nth-of-type(4):after {
+    transition-delay: 0.3s;
+}
+
+.boton .botontext:nth-of-type(1) {
+    color: #fff;
+    bottom: 100%;
+    transform-origin: center bottom 0px;
+    transform: matrix3d(1, 0, 0, 0,
+    0, 0, -1, -0.003,
+    0, 1, 0, 0,
+    0, 0, 0, 1);
+
+    -webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    -moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    -o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+}
+
+.boton:hover .botontext:nth-of-type(1) {
+    transform: matrix3d(1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0.003,
+    0, 50, 0, 1);
+}
+
+.boton .botontext:nth-of-type(2) {
+    color: #000;
+    top: 100%;
+    transform-origin: center top 0px;
+    transform: matrix3d(1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, -0.003,
+    0, -50, 0, 1);
+
+    -webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    -moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    -o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995);
+    transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+}
+
+.boton:hover .botontext:nth-of-type(2) {
+    transform: matrix3d(1, 0, 0, 0,
+    0, 0, -1, 0.003,
+    0, 1, 0, 0,
+    0, 0, 0, 1);
+}
+
+.dot-w {
+    background-image: url(../img/dot_white.png);
+    background-repeat: repeat;
+    background-position: center;
+}
+
+.dot-b {
+    background-image: url(../img/dot_black.png);
+    background-repeat: repeat;
+    background-position: center;
+}
+
+.dot-o {
+    background-image: url(../img/dot_orange.png);
+    background-repeat: repeat;
+    background-position: center;
+}
+
+.dot-bg {
+    background-color: #181818;
+}
+
+.page__content > .container {
+    min-height: 100vh;
+    padding: 30px 15px 60px;
+    background-color: #fff;
+}
+
+.page__content .container-inner {
+    position: relative;
+}
+
+.page__content .container-inner:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 1000%;
+    height: 100%;
+    background-image: url(../img/dot_black.png);
+    background-repeat: repeat;
+    background-position: 0 -12px;
+}
+
+.page__content .wrapper {
+    position: relative;
+    background-color: #fff;
+}
+
+.belt-company {
+    background-image: url(../img/dot_black.png);
+    background-repeat: repeat;
+    background-position: center;
+    background-color: #fff;
+}
+
+.belt-object__title {
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 21px;
+    color: #fff;
+}
+
+.belt-objects {
+    background-image: url(../img/dot_white.png);
+    background-repeat: repeat;
+    background-position: center;
+}
+
+.belt-objects-container {
+    padding-top: 30px;
+    background-color: #181818;
+}
+
+.completed-orders,
+.belt-messages {
+    background-image: url(../img/dot_orange.png);
+    background-repeat: repeat;
+    background-position: center;
+}
+
+.directions {
+    background-color: #fff;
+}
+
+.header-desktop {
+    padding-bottom: 5px;
+}
+
+.footer__top {
+    text-align: center;
+}
+
+.footer__top,
+.footer__bottom {
+    padding: 0 !important;
+}
+.footer__top .container .dot-bg {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.footer__bottom .container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #181818;
+}
+
+.page-decor .row > div:last-child {
+    border-right: 1px solid rgba(242, 242, 242, 0.2);
+}
+
+.list-simple,
+.logistics__card-form,
+.logistics__item-right,
+.material-card__preview,
+.material__body-preview,
+.spec-list__item-preview,
+.object__preview,
+img {
+    position: relative;
+    z-index: 1;
+}
+
+/* HEADER */
+.logo-text {
+    font-family: 'Molot';
+}
+
+.header-menu__first-level > li > a {
+    font-size: 14px;
+}
+
+.header__city-selected {
+    white-space: nowrap;
+}
+
+.header__menu-wrapper {
+    flex: 1;
+}
+
+.header-menu__first-level > li + li {
+    margin-left: 15px;
+}
+
+.header-desktop .header__city-select {
+    margin-top: -8px;
+}
+
+.header-desktop .header__city-selected {
+    letter-spacing: normal;
+}
+
+.header-desktop .logo-text {
+    font-size: 26px;
+}
+
+.header__phone a {
+    font-size: 23px;
+    letter-spacing: 1.4px;
+}
+
+.header-desktop .header-menu__first-level {
+    flex-wrap: nowrap;
+}
+
+.header-r {
+    flex: 1;
+}
+
+.header-mobile-panel {
+    max-width: 320px;
+}
+
+.header-mobile-panel .header__logotype img {
+    width: 55px;
+}

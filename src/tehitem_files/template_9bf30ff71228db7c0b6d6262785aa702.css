@@ -1,0 +1,136 @@
+
+
+/* Start:/local/templates/ast/components/bitrix/menu/catalog_vertical/style.css?15093805201378*/
+.vertical-menu
+{
+	position: relative;
+	background: #fff;
+	border: 1px solid #e3eaef;
+	border-bottom: 0;
+}
+
+.vertical-menu ul
+{
+	list-style: none;
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	border-bottom: 1px solid #e3eaef;
+}
+
+.vertical-menu ul ul
+{
+	display: none;
+}
+
+.vertical-menu ul li.current ul,
+.vertical-menu ul li.open ul,
+.vertical-menu ul li:hover ul
+{
+	display: block;
+}
+
+.vertical-menu ul li.parent:hover > a:before,
+.vertical-menu ul li.parent.current > a:before,
+.vertical-menu ul li.parent.open > a:before
+{
+	transform: rotate(90deg);
+}
+
+.vertical-menu li.parent > a
+{
+	padding-right: 32px;
+}
+
+.vertical-menu li.parent > a:before
+{
+	content: url('/local/templates/ast/components/bitrix/menu/catalog_vertical/images/arrow.jpg');
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	margin-top: -8px;
+	opacity: 0.5;
+}
+
+.vertical-menu ul ul li > a
+{
+	padding-left: 20px;
+}
+
+.vertical-menu .lvl-1
+{
+	display: block;
+	padding: 0;
+}
+
+.vertical-menu li > a
+{
+	border-bottom: 1px solid #e3eaef;
+}
+
+.vertical-menu li a
+{
+	position: relative;
+	display: block;
+	padding: 10px;
+	color: #333;
+	vertical-align: middle;
+	text-align: left;
+	text-decoration: none;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.vertical-menu li:last-child > a
+{
+	border-bottom: none;
+}
+
+.vertical-menu a:hover,
+.vertical-menu a:active,
+.vertical-menu .current > a
+{
+	color: #ff9a0d;
+}
+
+@media (max-width: 569px)
+{
+	.vertical-menu
+	{
+		display: none;
+	}
+}
+/* End */
+
+
+/* Start:/local/templates/ast/components/bitrix/breadcrumb/.default/style.min.css?1507792389448*/
+.bx-breadcrumb{margin:10px 0}.bx-breadcrumb i{color:#b5bdc2;line-height:13px;font-size:12px;vertical-align:middle;margin-right:5px}.bx-breadcrumb .bx-breadcrumb-item{float:left;margin-bottom:10px;white-space:nowrap;line-height:13px;vertical-align:middle;margin-right:10px}.bx-breadcrumb .bx-breadcrumb-item span{font-family:"Open Sans",Arial,"Helvetica Neue",Helvetica,sans-serif;font-size:13px}.bx-breadcrumb .bx-breadcrumb-item a{border-bottom:0}
+/* End */
+
+
+/* Start:/local/templates/ast/template_styles.css?1523354772250*/
+button.btn-x
+{
+	background: #ff9a0d;
+	color: #fff;
+	border-radius: 2px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
+button.btn-x.ml
+{
+	margin-left: 15px;
+}
+
+button.btn-x:hover
+{
+	background: #ffb54e;
+}
+/* End */
+/* /local/templates/ast/components/bitrix/menu/catalog_vertical/style.css?15093805201378 */
+/* /local/templates/ast/components/bitrix/breadcrumb/.default/style.min.css?1507792389448 */
+/* /local/templates/ast/template_styles.css?1523354772250 */

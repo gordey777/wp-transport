@@ -1,0 +1,25 @@
+
+
+/* Start:/local/templates/ast/template_styles.css?1523354772250*/
+button.btn-x
+{
+	background: #ff9a0d;
+	color: #fff;
+	border-radius: 2px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
+button.btn-x.ml
+{
+	margin-left: 15px;
+}
+
+button.btn-x:hover
+{
+	background: #ffb54e;
+}
+/* End */
+/* /local/templates/ast/template_styles.css?1523354772250 */

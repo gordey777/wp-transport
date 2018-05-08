@@ -1,0 +1,356 @@
+@font-face {
+  font-family: 'Molot';
+  font-weight: normal;
+  font-style: normal;
+
+  src: url('../fonts/Molot.eot');
+  src: url('../fonts/Molot.eot?#iefix') format('embedded-opentype'), url('../fonts/Molot.woff2') format('woff2'), url('../fonts/Molot.woff') format('woff'), url('../fonts/Molot.ttf') format('truetype');
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.boton {
+  line-height: 50px;
+
+  position: relative;
+
+  display: block;
+
+  width: 200px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+
+  cursor: pointer;
+
+  border: 0;
+  background-color: transparent;
+}
+
+.botontext {
+  font-size: 14px;
+  font-weight: bold;
+
+  position: absolute;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.twist {
+  position: relative;
+
+  display: block;
+  float: left;
+
+  width: 25%;
+  height: 100%;
+  margin-left: -4px;
+  &:before {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    content: '';
+    -webkit-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+       -moz-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+         -o-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+            transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+    transform: matrix3d(1, 0, 0, 0, 0, 0, -1, -.003, 0, 1, 0, 0, 0, 0, 0, 1);
+    transform-origin: center bottom 0;
+
+    background: #ff9a0d;
+    /* custom */
+  }
+  &:after {
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    content: '';
+    -webkit-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+       -moz-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+         -o-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+            transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -.003, 0, -50, 0, 1);
+    transform-origin: center top 0;
+
+    background: #fff;
+    /* custom */
+  }
+}
+
+.boton {
+  &:hover .twist {
+    &:before {
+      transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, .003, 0, 50, 0, 1);
+
+      background: #ff9a0d;
+    }
+    &:after {
+      transform: matrix3d(1, 0, 0, 0, 0, 0, -1, .003, 0, 1, 0, 0, 0, 0, 0, 1);
+
+      background: #ff9a0d;
+    }
+  }
+  .twist {
+    &:nth-of-type(1) {
+      margin-left: 0;
+      &:before,
+      &:after {
+        transition-delay: 0s;
+      }
+    }
+    &:nth-of-type(2) {
+      &:before,
+      &:after {
+        transition-delay: .1s;
+      }
+    }
+    &:nth-of-type(3) {
+      &:before,
+      &:after {
+        transition-delay: .2s;
+      }
+    }
+    &:nth-of-type(4) {
+      &:before,
+      &:after {
+        transition-delay: .3s;
+      }
+    }
+  }
+  .botontext:nth-of-type(1) {
+    bottom: 100%;
+
+    -webkit-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+       -moz-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+         -o-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+            transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+    transform: matrix3d(1, 0, 0, 0, 0, 0, -1, -.003, 0, 1, 0, 0, 0, 0, 0, 1);
+    transform-origin: center bottom 0;
+
+    color: #fff;
+    /* custom */
+  }
+  &:hover .botontext:nth-of-type(1) {
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, .003, 0, 50, 0, 1);
+  }
+  .botontext:nth-of-type(2) {
+    top: 100%;
+
+    -webkit-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+       -moz-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+         -o-transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+            transition: all 500ms cubic-bezier(.97, 0, .395, .995);
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -.003, 0, -50, 0, 1);
+    transform-origin: center top 0;
+
+    color: #000;
+    /* custom */
+  }
+  &:hover .botontext:nth-of-type(2) {
+    transform: matrix3d(1, 0, 0, 0, 0, 0, -1, .003, 0, 1, 0, 0, 0, 0, 0, 1);
+  }
+}
+
+.dot-w {
+  background-image: url(../img/dot_white.png);
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.dot-b {
+  background-image: url(../img/dot_black.png);
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.dot-o {
+  background-image: url(../img/dot_orange.png);
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.dot-bg {
+  background-color: #181818;
+}
+
+.page__content {
+  > .container {
+    min-height: 100vh;
+    padding: 30px 15px 60px;
+
+    background-color: #fff;
+  }
+  .container-inner {
+    position: relative;
+    &:before {
+      position: absolute;
+      top: 0;
+      left: -50%;
+
+      width: 1000%;
+      height: 100%;
+
+      content: '';
+
+      background-image: url(../img/dot_black.png);
+      background-repeat: repeat;
+      background-position: 0 -12px;
+    }
+  }
+  .wrapper {
+    position: relative;
+
+    background-color: #fff;
+  }
+}
+
+.belt-company {
+  background-color: #fff;
+  background-image: url(../img/dot_black.png);
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.belt-object__title {
+  font-size: 21px;
+  font-weight: bold;
+
+  margin-bottom: 30px;
+
+  color: #fff;
+}
+
+.belt-objects {
+  background-image: url(../img/dot_white.png);
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.belt-objects-container {
+  padding-top: 30px;
+
+  background-color: #181818;
+}
+
+.completed-orders,
+.belt-messages {
+  background-image: url(../img/dot_orange.png);
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.directions {
+  background-color: #fff;
+}
+
+.header-desktop {
+  padding-bottom: 5px;
+}
+
+.footer__top {
+  padding: 0 !important;
+
+  text-align: center;
+}
+
+.footer__bottom {
+  padding: 0 !important;
+}
+
+.footer__top .container .dot-bg {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.footer__bottom .container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  background-color: #181818;
+}
+
+.page-decor .row > div:last-child {
+  border-right: 1px solid rgba(242, 242, 242, .2);
+}
+
+.list-simple,
+.logistics__card-form,
+.logistics__item-right,
+.material-card__preview,
+.material__body-preview,
+.spec-list__item-preview,
+.object__preview,
+img {
+  position: relative;
+  z-index: 1;
+}
+
+/* HEADER */
+
+.logo-text {
+  font-family: 'Molot';
+}
+
+.header-menu__first-level > li > a {
+  font-size: 14px;
+}
+
+.header__city-selected {
+  white-space: nowrap;
+}
+
+.header__menu-wrapper {
+  flex: 1;
+}
+
+.header-menu__first-level > li + li {
+  margin-left: 15px;
+}
+
+.header-desktop {
+  .header__city-select {
+    margin-top: -8px;
+  }
+  .header__city-selected {
+    letter-spacing: normal;
+  }
+  .logo-text {
+    font-size: 26px;
+  }
+}
+
+.header__phone a {
+  font-size: 23px;
+
+  letter-spacing: 1.4px;
+}
+
+.header-desktop .header-menu__first-level {
+  flex-wrap: nowrap;
+}
+
+.header-r {
+  flex: 1;
+}
+
+.header-mobile-panel {
+  max-width: 320px;
+  .header__logotype img {
+    width: 55px;
+  }
+}
