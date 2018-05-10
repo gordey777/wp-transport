@@ -68,7 +68,7 @@ body {
     transform: matrix3d(1, 0, 0, 0, 0, 0, -1, -.003, 0, 1, 0, 0, 0, 0, 0, 1);
     transform-origin: center bottom 0;
 
-    background: #ff9a0d;
+    background: #82bf31;
     /* custom */
   }
   &:after {
@@ -97,12 +97,12 @@ body {
     &:before {
       transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, .003, 0, 50, 0, 1);
 
-      background: #ff9a0d;
+      background: #82bf31;
     }
     &:after {
       transform: matrix3d(1, 0, 0, 0, 0, 0, -1, .003, 0, 1, 0, 0, 0, 0, 0, 1);
 
-      background: #ff9a0d;
+      background: #82bf31;
     }
   }
   .twist {

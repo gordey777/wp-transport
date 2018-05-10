@@ -1,0 +1,57 @@
+/* Start:/local/templates/ast/components/bitrix/breadcrumb/.default/style.min.css?1507792389448*/
+
+.bx-breadcrumb {
+  margin: 10px 0;
+
+  i {
+    font-size: 12px;
+    line-height: 13px;
+    margin-right: 5px;
+    vertical-align: middle;
+    color: #b5bdc2;
+  }
+
+  .bx-breadcrumb-item {
+    line-height: 13px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    span {
+      font-family: 'Open Sans',Arial,'Helvetica Neue',Helvetica,sans-serif;
+      font-size: 13px;
+    }
+
+    a {
+      border-bottom: 0;
+    }
+  }
+}
+
+/* End */
+
+/* Start:/local/templates/ast/template_styles.css?1523354772250*/
+
+button.btn-x {
+  padding-top: 12px;
+  padding-right: 1.5rem;
+  padding-bottom: 12px;
+  padding-left: 1.5rem;
+  color: #fff;
+  border-radius: 2px;
+  background: #ff9a0d;
+
+  &.ml {
+    margin-left: 15px;
+  }
+
+  &:hover {
+    background: #ffb54e;
+  }
+}
+
+/* End */
+/* /local/templates/ast/components/bitrix/breadcrumb/.default/style.min.css?1507792389448 */
+/* /local/templates/ast/template_styles.css?1523354772250 */

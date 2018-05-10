@@ -252,4 +252,13 @@ $(document).ready(function() {
 
   $("#callbackForm #phone").mask("+7(999) 999-9999");
 
+  $(".faq-item").click(function(event) {
+
+    $(this).toggleClass('faq-item-open');
+  });
+
+
+  $('li.cat-item').has("ul.children").addClass('parent');
+  $('li.cat-item').has("li.current-cat").addClass('open');
+  $('li.cat-item').has("li.current").addClass('open');
 });
