@@ -35,7 +35,16 @@
       </div>
     </div>
   </div>
-
+  <div class="page-decor">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </div>
 
   <div class="modal fade" id="order" tabindex="-1" role="dialog" aria-labelledby="modal-callback-label" aria-hidden="true">
     <div class="modal-dialog" role="document">

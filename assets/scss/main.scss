@@ -8,6 +8,13 @@
     float: right;
   }
 }
+.about-cont {
+  .wp-post-image {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+  }
+}
 
 .footer-socials {
   .social {
