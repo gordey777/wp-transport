@@ -57,25 +57,16 @@ get_header(); ?>
     ); ?>
 
 
-
-
-
-
   <div  id="post-<?php the_ID(); ?>" <?php post_class('page__content'); ?>>
     <div class="container">
       <div class="row">
         <div class="sidebar hidden-md-down col-lg-3">
           <div class="vertical-menu">
             <ul>
-
-
-
               <?php if($postcatParent != 0){
                 wp_list_categories( $catargs );
               }else{
                 $posts = get_posts( $postargs );
-
-
                 foreach($posts as $post){
                   setup_postdata($post);
                   if(get_the_ID() == $postID ){
@@ -83,15 +74,12 @@ get_header(); ?>
                   } else {
                     $current = '';
                   } ?>
-
                   <li class="lvl-1 <?php echo $current; ?>">
                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                   </li>
                 <?php }
-
                 wp_reset_postdata();
               } ?>
-
             </ul>
           </div>
         </div>
@@ -100,56 +88,126 @@ get_header(); ?>
           <h1 class="page__header"><?php the_title(); ?></h1><?php edit_post_link(); ?>
           <div class="container-inner">
             <div class="wrapper">
-              <div class="news-detail">
-                <?php the_content(); ?>
+              <div class="spec-card">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="object-card__slider-preview">
+                      <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                          <?php if ( has_post_thumbnail()) :?>
+                            <div data-src="<?php the_post_thumbnail_url(); ?>" class="swiper-slide">
+                              <img src="<?php the_post_thumbnail_url('medium'); ?>">
+                            </div>
+                          <?php endif;
+                          $images = get_field('teh_gallery');
 
-      <?php if ( has_post_thumbnail()) :?>
-        <a class="single-thumb" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-          <?php the_post_thumbnail(); // Fullsize image for the single post ?>
-        </a>
-      <?php endif; ?><!-- /post thumbnail -->
+                          if( $images ): ?>
+                            <?php foreach( $images as $image ): ?>
+                              <div data-src="<?php echo $image['url']; ?>" class="swiper-slide">
+                                <img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt']; ?>">
+                              </div>
+                            <?php endforeach; ?>
+                          <?php endif; ?>
 
-                <h2 style="text-align: center;">
-Выберите нужную спецтехнику прямо сейчас</h2>
-                <div style="clear:both"></div>
-                <!-- Ext -->
-                <div class="row ext">
-                  <div class="col-xs-12 col-sm-6 col-md-4 item">
-                    <a href="http://xn--24-6kc2ef.xn--p1ai/spetstekhnika/yamobury/yamobur-mini-pogruzchik-bobcat/">
-                      <div class="img" title="Ямобур мини-погрузчик Bobcat" style="background-image: url(/upload/iblock/50f/50f8e14769a35c8c153e42c4d2d9023a.jpg)"></div>
-                      <div class="name">Ямобур мини-погрузчик Bobcat</div>
-                    </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="object-card__slider">
+                      <div class="object-card__slide-prev"></div>
+                      <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                          <?php if ( has_post_thumbnail()) :?>
+                            <div class="swiper-slide">
+                              <img src="<?php the_post_thumbnail_url('small-icon'); ?>" alt="">
+                            </div>
+                          <?php endif;
+                          $images = get_field('teh_gallery');
+
+                          if( $images ): ?>
+                            <?php foreach( $images as $image ): ?>
+                              <div  class="swiper-slide">
+                                <img src="<?php echo $image['sizes']['small-icon']; ?>" alt="<?php echo $image['alt']; ?>">
+                              </div>
+                            <?php endforeach; ?>
+                          <?php endif; ?>
+                        </div>
+                      </div>
+                      <div class="object-card__slide-next"></div>
+                    </div>
                   </div>
-                  <div class="col-xs-12 col-sm-6 col-md-4 item">
-                    <a href="http://xn--24-6kc2ef.xn--p1ai/spetstekhnika/yamobury/yamobur-isuzu-elf-s-ustanovkoy-aichi-d502/">
-                      <div class="img" title="Ямобур Isuzu Elf с установкой Аichi D502" style="background-image: url(/upload/iblock/444/44491a23f835401bf4dee25d11e155de.jpg)"></div>
-                      <div class="name">Ямобур Isuzu Elf с установкой Аichi D502</div>
-                    </a>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-4 item">
-                    <a href="http://xn--24-6kc2ef.xn--p1ai/spetstekhnika/yamobury/yamobur-ural-mrk-800/">
-                      <div class="img" title="Ямобур УРАЛ МРК-800" style="background-image: url(/upload/iblock/231/2314a66d2a804914e722dc640bb64b01.jpg)"></div>
-                      <div class="name">Ямобур УРАЛ МРК-800</div>
-                    </a>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-4 item">
-                    <a href="http://xn--24-6kc2ef.xn--p1ai/spetstekhnika/yamobury/yamobur-gaz-66/">
-                      <div class="img" title="Ямобур ГАЗ-66" style="background-image: url(/upload/iblock/ced/ced9a94941e30e968c0055e41ee7c94f.jpg)"></div>
-                      <div class="name">Ямобур ГАЗ-66</div>
-                    </a>
+                  <div class="col-lg-6">
+                    <div class="spec-card__info">
+                      <?php if( have_rows('teh_characteristic') ): ?>
+                        <h2>Технические характеристики</h2>
+                        <?php while ( have_rows('teh_characteristic') ) : the_row(); ?>
+                          <div class="spec-card__info-item"><?php the_sub_field('title'); ?>:<b><?php the_sub_field('value'); ?></b></div>
+                        <?php  endwhile; ?>
+                      <?php endif; ?>
+                    </div>
                   </div>
                 </div>
-                <!-- /Ext -->
+                <div class="spec-card__info-bottom">
+                  <div class="row">
+                    <?php if( have_rows('teh_pricec') ): ?>
+                      <?php while ( have_rows('teh_pricec') ) : the_row(); ?>
+                        <div class="col-md-3"><?php the_sub_field('title'); ?>:<b><?php the_sub_field('value'); ?></b></div>
+                      <?php  endwhile; ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+                <div class="spec-card__footer">
+                  <button id="orderButton" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#order" data-order="Автовышка ISUZU ELF (15 метров)">Оставить заявку</button>
+                </div>
               </div>
-              <p><a class="btn btn-primary btn-lg mt-5" href="http://xn--24-6kc2ef.xn--p1ai/uslugi/">Возврат к списку</a>
-                <button class="btn btn-x mt-5 ml" data-toggle="modal" data-target="#callback">Заказать консультацию</button>
-              </p>
+              <div class="row">
+                <div class="col-xl-8">
+                  <div class="object-card-top__title"></div>
+                  <div class="wysiwyg">
+                    <?php the_content(); ?>
+                  </div>
+                </div>
+                <div class="col-xl-4">
+                  <div class="list-simple">
+                    <div class="list-simple__header">Скидки в зависимости от:</div>
+                    <ul>
+                      <li>От объема</li>
+                      <li>Постоянным клиентам и партнерам</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <?php $servposts = get_field('servises');
+              if( $servposts ): ?>
+                <!-- Ext -->
+                <hr>
+                <p><?php the_title(); ?> может быть использован при выполнении следующих видов работ:</p>
+                <div class="row ext">
+                    <?php foreach( $servposts as $post): // variable must be called $post (IMPORTANT) ?>
+                        <?php setup_postdata($post); ?>
+                          <div class="col-xs-12 col-sm-6 col-md-4 item">
+                            <a href="<?php the_permalink(); ?>">
+                              <div class="img" title="<?php the_title(); ?>" <?php if ( has_post_thumbnail()) { ?>
+                                                                        style="background-image: url(<?php echo the_post_thumbnail_url('small'); ?>)"
+                                                                      <?php } else { ?>
+                                                                        style="background-image: url(<?php echo catchFirstImage(); ?>)"
+                                                                      <?php } ?>></div>
+                              <div class="name"><?php the_title(); ?></div>
+                            </a>
+                          </div>
+                    <?php endforeach; ?>
+                    <?php wp_reset_postdata(); ?>
+                </div><!-- /Ext -->
+              <?php endif; ?>
+
+              <a href="<?php echo get_category_link( $postcatID ); ?>" class="btn btn-primary btn-lg mt-5">Вернуться к списку</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <?php endwhile; endif; ?>
 
 

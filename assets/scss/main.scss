@@ -1,6 +1,14 @@
 @import 'style';
 @import 'dots';
 
+
+.servises-cont {
+  .wp-post-image {
+    display: inline-block;
+    float: right;
+  }
+}
+
 .footer-socials {
   .social {
     font-size: 21px;
@@ -162,6 +170,8 @@
 
 
 
+
+
 /* Start:/local/templates/ast/components/bitrix/breadcrumb/.default/style.min.css?1507792389448*/
 
 .bx-breadcrumb {
@@ -197,6 +207,8 @@
 }
 
 
+
+
 /* End */
 
 
@@ -218,6 +230,8 @@ button.btn-x {
     background: #ffb54e;
   }
 }
+
+
 
 
 /* End */
@@ -267,6 +281,8 @@ div.news-detail {
 }
 
 
+
+
 /* End */
 
 
@@ -278,6 +294,8 @@ div.news-detail {
     margin-bottom: 15px;
   }
 }
+
+
 
 
 /* grid2x1 */
@@ -328,6 +346,8 @@ div.news-detail {
     padding-left: 1%;
   }
 }
+
+
 
 
 /* End */
@@ -1504,6 +1524,8 @@ div.news-detail {
     background-size: 100% auto;
   }
 }
+
+
 
 
 /* End */

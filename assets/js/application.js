@@ -22528,14 +22528,14 @@
             c.$outer && c.$outer.remove(), a(".lg-backdrop").remove(), b || c.$el.trigger("onCloseAfter.lg")
           }, c.s.backdropDuration + 50)
         }, a.fn.lightGallery = function(c) {
-/*          //BUG
+          //BUG
             return this.each(function() {
             if (a.data(this, "lightGallery")) try {
               a(this).data("lightGallery").init()
             } catch (a) {
               console.error("lightGallery has not initiated properly")
             } else a.data(this, "lightGallery", new b(this, c))
-          })*/
+          })
         }, a.fn.lightGallery.modules = {}
       }()
     }),
