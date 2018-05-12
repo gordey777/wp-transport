@@ -410,7 +410,7 @@ $(document).ready(function() {
       }
 
     }
-
+  })(jQuery);
     /*
      *  document ready
      *
@@ -437,5 +437,5 @@ $(document).ready(function() {
 
 
 
-  })(jQuery);
+
 });
