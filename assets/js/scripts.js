@@ -243,17 +243,25 @@ $(document).ready(function() {
     });
   });
 
-
-  $("#orderForm #phone").mask("+7(999) 999-9999");
+  $("form input[type='tel']").mask("+7(999) 999-9999");
 
   $('body').on('click', '#orderButton', function() {
-    $('#rent').val($(this).data('order'));
+    $('#orderForm .order-rent').val($(this).data('order')).attr('readonly', '');;
   });
 
-  $("#callbackForm #phone").mask("+7(999) 999-9999");
+  // var wpcf7Elm = document.querySelector('.modal-body .wpcf7');
+
+  // wpcf7Elm.addEventListener('wpcf7mailsent', function(event) {
+  //   setTimeout(function() {
+  //     $(".modal").modal("hide");
+  //     //$('.modal').hide('fast');
+  //   }, 3000);
+  // }, false);
+
+
+
 
   $(".faq-item").click(function(event) {
-
     $(this).toggleClass('faq-item-open');
   });
 

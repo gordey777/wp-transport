@@ -1,0 +1,60 @@
+<div id="logisticForm">
+[dynamichidden page-name "CF7_get_post_var key='title'"]
+<div class="logistics__card-form-title">Форма заказа</div>
+<div class="row">
+<div class="col-12">
+<div class="form-group">
+<label for="log-name">Как к вам обращаться *</label>
+[text* log-name id:log-name class:form-control akismet:author]
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label for="log-email">Электронная почта</label>
+[email log-email id:log-email class:form-control akismet:author_email]
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label for="log-phone">Телефон *</label>
+[tel* log-phone id:log-phone class:form-control]
+</div>
+</div>
+<div class="col-12">
+<div class="form-group">
+<label for="start-point">Пункт отправления *</label>
+[text* start-point id:start-point class:form-control placeholder "Страна, область / край, город"]
+</div>
+</div>
+<div class="col-12">
+<div class="form-group">
+<label for="start-point">Пункт назначения *</label>
+[text* end-point id:end-point class:form-control placeholder "Страна, область / край, город"]
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label for="weight">Вес груза, тонн</label>
+[text weight id:weight class:form-control]
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label for="size">Габариты груза, метры</label>
+[text size id:size class:form-control]
+</div>
+</div>
+<div class="col-12">
+<div class="form-group">
+<label for="log-acceptance">
+[acceptance log-acceptance id:log-acceptance default:on]
+<span class="checkbox-facade"></span> Ознакомьтесь с <a href="/?p=211">политикой конфиденциальности</a> и подтвердите согласие на обработку персональных данных
+</label>
+</div>
+</div>
+</div>
+<div class="text-center mt-3 mb-5">
+[submit class:btn class:btn-lg class:btn-primary "Заказать"]
+</div>
+<div>Поля отмеченные *, обязательны для заполнения</div>
+</div>

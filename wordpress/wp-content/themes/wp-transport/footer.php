@@ -29,8 +29,8 @@
             <?php  endif; ?>
           </div>
           <div class="col-md-3 text-center">
-            © ООО «АСТ24», 2014 - 2018
-            <a href="#/politika-konfidentsialnosti/">Политика конфиденциальности</a> </div>
+            © ССК ОЛИМП, 2014 - <?php echo date("Y"); ?>
+            <a href="/?p=211">Политика конфиденциальности</a> </div>
         </div>
       </div>
     </div>
@@ -56,57 +56,7 @@
           </button>
         </div>
         <div class="modal-body" id="order-form">
-          <form id="orderForm">
-            <input type="hidden" name="sessid" id="sessid" value="f4d304b3b5707c5c8d38b757e8ac3e94">
-            <input type="hidden" name="AJAX_CALL" value="Y">
-            <input type="hidden" name="iblock_id" value="10">
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="rent">Услуга</label>
-                  <input type="text" class="form-control" name="rent" id="rent" readonly="">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="name">Как к вам обращаться *</label>
-                  <input type="text" class="form-control" name="name" id="name" required="">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="mail">Электронная почта</label>
-                  <input type="email" class="form-control" name="mail" id="mail">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="phone">Телефон *</label>
-                  <input type="tel" class="form-control" name="phone" id="phone" required="">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="message">Дополнительная информация</label>
-                  <textarea cols="30" rows="4" class="form-control" name="message" id="message"></textarea>
-                </div>
-                <div class="form-group mb-4">
-                  <label for="rule">
-                    <input type="checkbox" checked="checked" name="rule" id="rule" required=""> Ознакомьтесь с <a href="#/politika-konfidentsialnosti/">политикой конфиденциальности</a> и подтвердите согласие на обработку персональных данных</label>
-                </div>
-                <div class="form-group mb-4">
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Отправить</button>
-                  </div>
-                </div>
-                Поля отмеченные *, обязательны для заполнения
-              </div>
-            </div>
-          </form>
-          <div class="success-msg text-center">
-            <p>Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время.</p>
-            <button class="new-order btn btn-primary btn-lg">Новая заявка</button>
-          </div>
+          <?php echo do_shortcode('[contact-form-7 id="234" title="Заявка Техники"]'); ?>
         </div>
       </div>
     </div>
@@ -122,52 +72,7 @@
           </button>
         </div>
         <div class="modal-body" id="callback-form">
-          <form id="callbackForm">
-            <input type="hidden" name="sessid" id="sessid_1" value="f4d304b3b5707c5c8d38b757e8ac3e94">
-            <input type="hidden" name="AJAX_CALL" value="Y">
-            <input type="hidden" name="iblock_id" value="11">
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="name">Как к вам обращаться *</label>
-                  <input type="text" class="form-control" name="name" id="name" required="">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="mail">Электронная почта</label>
-                  <input type="email" class="form-control" name="mail" id="mail">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="phone">Телефон *</label>
-                  <input type="tel" class="form-control" name="phone" id="phone" required="">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="message">Дополнительная информация</label>
-                  <textarea cols="30" rows="4" class="form-control" name="message" id="message"></textarea>
-                </div>
-                <div class="form-group mb-4">
-                  <label for="rule">
-                    <input type="checkbox" checked="checked" name="rule" id="rule" required=""> Ознакомьтесь с <a href="#/politika-konfidentsialnosti/">политикой конфиденциальности</a> и подтвердите согласие на обработку персональных данных
-                  </label>
-                </div>
-                <div class="form-group mb-4">
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Отправить</button>
-                  </div>
-                </div>
-                Поля отмеченные *, обязательны для заполнения
-              </div>
-            </div>
-          </form>
-          <div class="success-msg text-center">
-            <p>Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время.</p>
-            <button class="new-callback btn btn-primary btn-lg">Новая заявка</button>
-          </div>
+          <?php echo do_shortcode('[contact-form-7 id="235" title="Заказать звонок"]'); ?>
         </div>
       </div>
     </div>

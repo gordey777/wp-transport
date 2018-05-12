@@ -1,6 +1,14 @@
 @import 'style';
 @import 'dots';
 
+.wpcf7-form {
+  a {
+    color: #fff;
+    &:hover {
+      color: #fff;
+    }
+  }
+}
 
 .servises-cont {
   .wp-post-image {
@@ -8,6 +16,7 @@
     float: right;
   }
 }
+
 .about-cont {
   .wp-post-image {
     display: inline-block;
@@ -43,6 +52,22 @@
     }
   }
 }
+
+//Partners
+.partners__list {
+  .contact-officer {
+    margin-bottom: 40px;
+  }
+  .contact-officer__avatar-wrapper {
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+
+
 
 //sidebar menu
 .vertical-menu {
@@ -179,6 +204,8 @@
 
 
 
+
+
 /* Start:/local/templates/ast/components/bitrix/breadcrumb/.default/style.min.css?1507792389448*/
 
 .bx-breadcrumb {
@@ -216,6 +243,8 @@
 
 
 
+
+
 /* End */
 
 
@@ -237,6 +266,8 @@ button.btn-x {
     background: #ffb54e;
   }
 }
+
+
 
 
 
@@ -290,6 +321,8 @@ div.news-detail {
 
 
 
+
+
 /* End */
 
 
@@ -301,6 +334,8 @@ div.news-detail {
     margin-bottom: 15px;
   }
 }
+
+
 
 
 
@@ -353,6 +388,8 @@ div.news-detail {
     padding-left: 1%;
   }
 }
+
+
 
 
 
@@ -1531,6 +1568,8 @@ div.news-detail {
     background-size: 100% auto;
   }
 }
+
+
 
 
 

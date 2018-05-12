@@ -297,8 +297,8 @@ function html5wp_pagination() {
       'base' => str_replace($big, '%#%', get_pagenum_link($big)),
       'format' => '?paged=%#%',
       'current' => max(1, get_query_var('paged')),
-      'prev_text' => __('« Previous'),
-      'next_text' => __('Next »'),
+      'prev_text' => __('&larr;'),
+      'next_text' => __('&rarr;'),
       'total' => $wp_query->max_num_pages
     )
   );
@@ -687,6 +687,16 @@ function post_is_in_descendant_category( $cats, $_post = null ){
   return false;
 }
 
+
+// Custom Excerpt function for Advanced Custom Fields
+function custom_field_excerpt($length, $field) {
+  $text = strip_shortcodes( $field );
+  $text = apply_filters('the_content', $text);
+  $text = str_replace(']]>', ']]>', $text);
+  $excerpt_length = apply_filters('excerpt_length', $length);
+  $excerpt_more = apply_filters('excerpt_more', ' ' . '...');
+  return wp_trim_words( $text, $excerpt_length, $excerpt_more );
+}
 
 //add_theme_support('category-thumbnails');
 

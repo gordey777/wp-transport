@@ -1,0 +1,45 @@
+<div id="orderForm">
+<div class="row">
+<div class="col-12">
+<div class="form-group">
+[dynamichidden page-name "CF7_get_post_var key='title'"]
+<label for="order-rent">Услуга</label>
+[text order-rent readonly id:order-rent class:form-control  class:order-rent]
+</div>
+</div>
+<div class="col-12">
+<div class="form-group">
+<label for="order-name">Как к вам обращаться *</label>
+[text* order-name id:order-name class:form-control akismet:author]
+</div>
+</div>
+<div class="col-lg-6">
+<div class="form-group">
+<label for="order-email">Электронная почта</label>
+[email order-email id:order-email class:form-control akismet:author_email]
+</div>
+</div>
+<div class="col-lg-6">
+<div class="form-group">
+<label for="order-phone">Телефон *</label>
+[tel* order-phone id:order-phone class:form-control]
+</div>
+</div>
+<div class="col-12">
+<div class="form-group">
+<label for="order-message">Дополнительная информация</label>
+[textarea order-message id:order-message class:form-control]
+</div>
+<div class="form-group mb-4">
+<label for="order-acceptance">
+[acceptance order-acceptance id:order-acceptance default:on] Ознакомьтесь с <a href="/?p=211">политикой конфиденциальности</a> и подтвердите согласие на обработку персональных данных</label>
+</div>
+<div class="form-group mb-4">
+<div class="text-center">
+[submit class:btn class:btn-lg class:btn-primary "Заказать"]
+</div>
+</div>
+Поля отмеченные *, обязательны для заполнения
+</div>
+</div>
+</div>

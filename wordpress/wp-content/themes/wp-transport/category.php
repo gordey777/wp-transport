@@ -96,14 +96,6 @@
                 <?php endwhile; endif; ?>
                 <div class="clearfix"></div>
                 <?php get_template_part('pagination'); ?>
-
-
-
-
-
-
-
-
                 <div class="row">
                   <div class="col-12">
                     <div class="wysiwyg">

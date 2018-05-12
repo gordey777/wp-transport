@@ -86,11 +86,11 @@
 }
 
 .swiper-container-autoheight .swiper-wrapper {
-  -webkit-transition-property: -webkit-transform,height;
-  -webkit-transition-property: height,-webkit-transform;
-  transition-property: height,-webkit-transform;
-  transition-property: transform,height;
-  transition-property: transform,height,-webkit-transform;
+  -webkit-transition-property: -webkit-transform, height;
+  -webkit-transition-property: height, -webkit-transform;
+  transition-property: height, -webkit-transform;
+  transition-property: transform, height;
+  transition-property: transform, height, -webkit-transform;
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
@@ -1310,7 +1310,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .lg-outer .lg-dropdown a {
-  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 12px;
   display: block;
   padding: 4px 12px;
@@ -13022,7 +13022,7 @@ img {
   border-left: 1px solid rgba(242, 242, 242, 0.2);
 }
 
-.page {
+body.page {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -13336,6 +13336,27 @@ img {
   background-image: url(../img/arrow-right.png?d5555419b0c3db4430f83c44496d8343);
 }
 
+.pagination .page-numbers {
+  line-height: 40px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-left: 1px;
+  text-align: center;
+  color: #000;
+}
+
+.pagination .page-numbers:active, .pagination .page-numbers:hover {
+  color: #fff;
+  background-color: #181818;
+  text-decoration: none;
+}
+
+.pagination .page-numbers.current {
+  color: #fff;
+  background-color: #82bf31;
+}
+
 .pagination li a {
   line-height: 40px;
   display: block;
@@ -13352,6 +13373,17 @@ img {
 }
 
 .pagination li.active a {
+  color: #fff;
+  background-color: #82bf31;
+}
+
+.pagination li.current {
+  line-height: 40px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-left: 1px;
+  text-align: center;
   color: #fff;
   background-color: #82bf31;
 }
@@ -13824,6 +13856,14 @@ img {
   width: 55px;
 }
 
+.wpcf7-form a {
+  color: #fff;
+}
+
+.wpcf7-form a:hover {
+  color: #fff;
+}
+
 .servises-cont .wp-post-image {
   display: inline-block;
   float: right;
@@ -13856,6 +13896,17 @@ img {
 .footer-socials .social:hover {
   text-decoration: none;
   background: #82bf31;
+}
+
+.partners__list .contact-officer {
+  margin-bottom: 40px;
+}
+
+.partners__list .contact-officer__avatar-wrapper {
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .vertical-menu {
