@@ -12,26 +12,54 @@ get_header(); ?>
         <h1 class="page__header"><?php the_title(); ?></h1><?php edit_post_link(); ?>
         <div class="container-inner">
           <div class="wrapper">
-            <div class="container" align="center">
-              <?php the_content(); ?>
+            <div class="wysiwyg">
+              <!---->
+              <h2 style="text-align: center;"><?php the_content(); ?></h2>
               <br>
               <br>
               <br>
-              <?php if( have_rows('partners') ): ?>
-                <div class="row partners__list">
-                  <?php while ( have_rows('partners') ) : the_row(); ?>
-                    <?php $img = get_sub_field('logo'); ?>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 ">
-                      <div class="contact-officer ">
-                        <div class="contact-officer__avatar-wrapper" style="background-image: url(<?php echo $img['sizes']['medium']; ?>)" title="<?php the_sub_field('title'); ?>">
-                          <!-- <img src="<?php echo $img['sizes']['medium']; ?>" alt="<?php the_sub_field('title'); ?>"> -->
-                        </div>
-                      </div>
+              <?php if( have_rows('contacts') ): ?>
+                <div class="row" align="center">
+                  <?php while ( have_rows('contacts') ) : the_row(); ?>
+                    <div class="col-xs-12 col-sm-6">
+                      <h3><?php the_sub_field('title'); ?></h3>
+                      <?php if(get_sub_field('email')) { ?>
+                        <a href="mailto:<?php the_sub_field('email'); ?>"><?php the_sub_field('email'); ?></a>
+                      <?php } ?>
+                      <br>
+                      <?php if(get_sub_field('tel')) { ?>
+                        <a href="tel:<?php echo preg_replace("/[^0-9]/","",get_sub_field('tel')); ?>"><?php the_sub_field('tel'); ?></a>
+                      <?php } ?>
                     </div>
                   <?php endwhile; ?>
                 </div>
               <?php endif; ?>
+              <br>
+              <br>
+              <br>
+              <br>
+              <h3><?php the_field('cont_adress_title'); ?>:</h3>
+              <div class="row">
+                <div class="col-xl-12">
+                  <h3><?php the_field('cont_adress'); ?></h3>
+                </div>
+              </div>
+              <br>
             </div>
+
+            <div class="row">
+              <?php
+
+              $location = get_field('cont_map');
+
+              if( !empty($location) ):
+              ?>
+              <div class="acf-map">
+                <div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
+              </div>
+              <?php endif; ?>
+            </div>
+            <br>
           </div>
         </div>
       </div>
