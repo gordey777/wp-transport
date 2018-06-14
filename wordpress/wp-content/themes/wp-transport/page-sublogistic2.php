@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: SubLogistic Page
+Template Name: SubLogistic 2 Page
 Template Post Type: post, page
 */
 get_header(); ?>
@@ -12,12 +12,17 @@ get_header(); ?>
               <div class="container-inner">
                   <div class="wrapper">
                       <div class="logistics">
-                          <div class="logistics__card">
-                              <?php if ( has_post_thumbnail()) :?>
-                                <div class="logistics__card-image">
-                                  <?php the_post_thumbnail(); ?>
+                          <div class="logistics__item">
+                            <div class="logistics__item-right" style="background-image: url(<?php the_post_thumbnail_url(); ?>);">
+                              <div class="logistics__item-text">
+                                <div class="logistics__item-title">
+                                  <p><?php the_title(); ?></p>
                                 </div>
-                              <?php endif;?>
+                                <?php the_field('logistic_desc'); ?>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="logistics__card">
                               <div class="row">
                                   <div class="col-xl-8">
 

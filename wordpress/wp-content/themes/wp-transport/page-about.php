@@ -23,29 +23,34 @@ get_header(); ?>
           <?php if( have_rows('buner_nav') ): ?>
             <div class="directions d-flex flex-wrap hidden-md-down">
 
-            <?php while ( have_rows('buner_nav') ) : the_row();
-              $abType = get_sub_field('about_link_type');
-              $aboutPage = get_sub_field('about_page');
-              $aboutCat = get_sub_field('about_category');
-              $holder = get_sub_field('img');
+              <?php while ( have_rows('buner_nav') ) : the_row();
+                $abType = get_sub_field('about_link_type');
+                $aboutPage = get_sub_field('about_page');
+                $aboutCat = get_sub_field('about_category');
+                $holder = get_sub_field('img');
+                $bunner = get_sub_field('bunner');
 
-              if($abType){
-                $abLink = get_permalink($aboutPage);
-                $abTitle = get_the_title($aboutPage);
-              }else {
-                $abLink = get_category_link($aboutCat);
-                $abTitle = get_cat_name($aboutCat);
-              } ?>
+                if($abType){
+                  $abLink = get_permalink($aboutPage);
+                  $abTitle = get_the_title($aboutPage);
+                }else {
+                  $abLink = get_category_link($aboutCat);
+                  $abTitle = get_cat_name($aboutCat);
+                } ?>
 
                 <a href="<?php echo $abLink;?>" class="direction">
-                  <div class="direction__cover" style="background-image: url(<?php echo $holder['url'];?>)"></div>
+                  <?php if (get_sub_field('bunner_style')){ ?>
+                    <div class="direction__cover" style="background-image: url(<?php echo $holder['url'];?>)"></div>
+                    <div class="direction__video">
+                      <video loop="" preload="none">
+                        <source src="<?php the_sub_field('video');?>" type="video/mp4"> Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  <?php } else { ?>
+                    <div class="direction__buner" style="background-image: url(<?php echo $bunner['url'];?>)"></div>
+                  <?php }?>
                   <div class="direction__caption"><?php echo $abTitle;?></div>
                   <div class="direction__bottom"><span>узнать больше</span></div>
-                  <div class="direction__video">
-                    <video loop="" preload="none">
-                      <source src="<?php the_sub_field('video');?>" type="video/mp4"> Your browser does not support the video tag.
-                    </video>
-                  </div>
                 </a>
               <?php endwhile; ?>
             </div>

@@ -74,19 +74,24 @@
                                                                                                                           <?php } else { ?>
                                                                                                                             style="background-image: url(<?php echo catchFirstImage(); ?>)"
                                                                                                                           <?php } ?>></a>
+
                       <div class="spec-list__item-content">
-                        <div class="spec-list__item-content-left">
-                          <div class="spec-list__item-content-item">Цена за час:<b>от 1000 рублей</b></div>
-                          <div class="spec-list__item-content-item">Минимальное время заказа:<b>2 часа</b></div>
-                          <div class="spec-list__item-content-item">Доставка город:<b>Бесплатно</b></div>
-                          <div class="spec-list__item-content-item">Доставка межгород:<b>40 рублей/км</b></div>
-                        </div>
-                        <div class="spec-list__item-content-right">
-                          <div class="spec-list__item-content-item">Высота подъема:<b>15 метров</b></div>
-                          <div class="spec-list__item-content-item">Грузоподъемность люльки:<b>200 кг</b></div>
-                          <div class="spec-list__item-content-item">Поворот корзины:<b>360°</b></div>
-                          <div class="spec-list__item-content-item">Габариты :<b>5520*1920*3500 мм</b></div>
-                        </div>
+                        <?php if( have_rows('teh_pricec') ): ?>
+                          <div class="spec-list__item-content-left">
+                            <?php while ( have_rows('teh_pricec') ) : the_row(); ?>
+                              <div class="spec-list__item-content-item"><?php the_sub_field('title'); ?>:<b><?php the_sub_field('value'); ?></b></div>
+                            <?php  endwhile; ?>
+                          </div>
+                        <?php endif; ?>
+
+                        <?php if( have_rows('teh_characteristic') ): ?>
+                          <div class="spec-list__item-content-right">
+                            <?php while ( have_rows('teh_characteristic') ) : the_row(); ?>
+                              <div class="spec-list__item-content-item"><?php the_sub_field('title'); ?>:<b><?php the_sub_field('value'); ?></b></div>
+                            <?php  endwhile; ?>
+                          </div>
+                        <?php endif; ?>
+
                       </div>
                     </div>
                     <div class="text-right">

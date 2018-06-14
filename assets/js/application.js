@@ -63,7 +63,7 @@
         enumerable: true,
         /******/
         get: getter
-          /******/
+        /******/
       });
       /******/
     }
@@ -1003,8 +1003,8 @@
           /**
            * Create key-value caches of limited size
            * @returns {function(string, object)} Returns the Object data after storing it on itself with
-           *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
-           *	deleting the oldest entry
+           *  property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+           *  deleting the oldest entry
            */
           function createCache() {
             var keys = [];
@@ -1810,14 +1810,14 @@
 
               "CHILD": function(match) {
                 /* matches from matchExpr["CHILD"]
-                	1 type (only|nth|...)
-                	2 what (child|of-type)
-                	3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
-                	4 xn-component of xn+y argument ([+-]?\d*n|)
-                	5 sign of xn-component
-                	6 x of xn-component
-                	7 sign of y-component
-                	8 y of y-component
+                  1 type (only|nth|...)
+                  2 what (child|of-type)
+                  3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
+                  4 xn-component of xn+y argument ([+-]?\d*n|)
+                  5 sign of xn-component
+                  6 x of xn-component
+                  7 sign of y-component
+                  8 y of y-component
                 */
                 match[1] = match[1].toLowerCase();
 
@@ -3389,23 +3389,23 @@
       /*
        * Create a callback list using the following parameters:
        *
-       *	options: an optional list of space-separated options that will change how
-       *			the callback list behaves or a more traditional option object
+       *  options: an optional list of space-separated options that will change how
+       *      the callback list behaves or a more traditional option object
        *
        * By default a callback list will act like an event callback list and can be
        * "fired" multiple times.
        *
        * Possible options:
        *
-       *	once:			will ensure the callback list can only be fired once (like a Deferred)
+       *  once:     will ensure the callback list can only be fired once (like a Deferred)
        *
-       *	memory:			will keep track of previous values and will call any callback added
-       *					after the list has been fired right away with the latest "memorized"
-       *					values (like a Deferred)
+       *  memory:     will keep track of previous values and will call any callback added
+       *          after the list has been fired right away with the latest "memorized"
+       *          values (like a Deferred)
        *
-       *	unique:			will ensure a callback can only be added once (no duplicate in the list)
+       *  unique:     will ensure a callback can only be added once (no duplicate in the list)
        *
-       *	stopOnFalse:	interrupt callings when a callback returns false
+       *  stopOnFalse:  interrupt callings when a callback returns false
        *
        */
       jQuery.Callbacks = function(options) {
@@ -3943,7 +3943,7 @@
         when: function(singleValue) {
           var
 
-          // count of uncompleted subordinates
+            // count of uncompleted subordinates
             remaining = arguments.length,
 
             // count of unprocessed arguments
@@ -4022,12 +4022,12 @@
         readyList
           .then(fn)
 
-        // Wrap jQuery.readyException in a function so that the lookup
-        // happens at the time of error handling instead of callback
-        // registration.
-        .catch(function(error) {
-          jQuery.readyException(error);
-        });
+          // Wrap jQuery.readyException in a function so that the lookup
+          // happens at the time of error handling instead of callback
+          // registration.
+          .catch(function(error) {
+            jQuery.readyException(error);
+          });
 
         return this;
       };
@@ -4322,15 +4322,15 @@
 
 
 
-      //	Implementation Summary
+      //  Implementation Summary
       //
-      //	1. Enforce API surface and semantic compatibility with 1.9.x branch
-      //	2. Improve the module's maintainability by reducing the storage
-      //		paths to a single mechanism.
-      //	3. Use the same single mechanism to support "private" and "user" data.
-      //	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
-      //	5. Avoid exposing implementation details on user objects (eg. expando properties)
-      //	6. Provide a clear path for implementation upgrade to WeakMap in 2014
+      //  1. Enforce API surface and semantic compatibility with 1.9.x branch
+      //  2. Improve the module's maintainability by reducing the storage
+      //    paths to a single mechanism.
+      //  3. Use the same single mechanism to support "private" and "user" data.
+      //  4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
+      //  5. Avoid exposing implementation details on user objects (eg. expando properties)
+      //  6. Provide a clear path for implementation upgrade to WeakMap in 2014
 
       var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
         rmultiDash = /[A-Z]/g;
@@ -5757,9 +5757,9 @@
 
       var
 
-      /* eslint-disable max-len */
+        /* eslint-disable max-len */
 
-      // See https://github.com/eslint/eslint/issues/3229
+        // See https://github.com/eslint/eslint/issues/3229
         rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([a-z][^\/\0>\x20\t\r\n\f]*)[^>]*)\/>/gi,
 
         /* eslint-enable */
@@ -6386,9 +6386,9 @@
 
       var
 
-      // Swappable if display is none or starts with table
-      // except "table", "table-cell", or "table-caption"
-      // See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+        // Swappable if display is none or starts with table
+        // except "table", "table-cell", or "table-caption"
+        // See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
         rdisplayswap = /^(none|table(?!-c[ea]).+)/,
         rcustomProp = /^--/,
         cssShow = {
@@ -7408,10 +7408,10 @@
           // Show any hidden elements after setting opacity to 0
           return this.filter(isHiddenWithinTree).css("opacity", 0).show()
 
-          // Animate to the value specified
-          .end().animate({
-            opacity: to
-          }, speed, easing, callback);
+            // Animate to the value specified
+            .end().animate({
+              opacity: to
+            }, speed, easing, callback);
         },
         animate: function(prop, speed, easing, callback) {
           var empty = jQuery.isEmptyObject(prop),
@@ -10414,7 +10414,7 @@
 
       var
 
-      // Map over jQuery in case of overwrite
+        // Map over jQuery in case of overwrite
         _jQuery = window.jQuery,
 
         // Map over the $ in case of overwrite
@@ -10497,18 +10497,23 @@
      * Video
      */
     var videos = $(".directions.hidden-md-down .direction");
+
     videos.hover(hoverVideo, hideVideo);
 
     function hoverVideo() {
-      $(this).css('width', '50%').siblings().css('width', 50 / 3 + '%');
 
-      $('.direction__video video', this).get(0).play();
+      $(this).css('width', '50%').siblings().css('width', 50 / 3 + '%');
+      if ($(this).find('.direction__video video').length > 0) {
+        $('.direction__video video', this).get(0).play();
+      }
+
     }
 
     function hideVideo() {
       $(this).css('width', '25%').siblings().css('width', '25%');
-
-      $('.direction__video video', this).get(0).pause();
+      if ($(this).find('.direction__video video').length > 0) {
+        $('.direction__video video', this).get(0).pause();
+      }
     }
 
     /***/
@@ -17121,36 +17126,36 @@
           paginationBulletMessage: 'Go to slide {{index}}',
           // Callbacks
           runCallbacksOnInit: true
-            /*
-            Callbacks:
-            onInit: function (swiper)
-            onDestroy: function (swiper)
-            onBeforeResize: function (swiper)
-            onAfterResize: function (swiper)
-            onClick: function (swiper, e)
-            onTap: function (swiper, e)
-            onDoubleTap: function (swiper, e)
-            onSliderMove: function (swiper, e)
-            onSlideChangeStart: function (swiper)
-            onSlideChangeEnd: function (swiper)
-            onTransitionStart: function (swiper)
-            onTransitionEnd: function (swiper)
-            onImagesReady: function (swiper)
-            onProgress: function (swiper, progress)
-            onTouchStart: function (swiper, e)
-            onTouchMove: function (swiper, e)
-            onTouchMoveOpposite: function (swiper, e)
-            onTouchEnd: function (swiper, e)
-            onReachBeginning: function (swiper)
-            onReachEnd: function (swiper)
-            onSetTransition: function (swiper, duration)
-            onSetTranslate: function (swiper, translate)
-            onAutoplayStart: function (swiper)
-            onAutoplayStop: function (swiper),
-            onLazyImageLoad: function (swiper, slide, image)
-            onLazyImageReady: function (swiper, slide, image)
-            onKeyPress: function (swiper, keyCode)
-            */
+          /*
+          Callbacks:
+          onInit: function (swiper)
+          onDestroy: function (swiper)
+          onBeforeResize: function (swiper)
+          onAfterResize: function (swiper)
+          onClick: function (swiper, e)
+          onTap: function (swiper, e)
+          onDoubleTap: function (swiper, e)
+          onSliderMove: function (swiper, e)
+          onSlideChangeStart: function (swiper)
+          onSlideChangeEnd: function (swiper)
+          onTransitionStart: function (swiper)
+          onTransitionEnd: function (swiper)
+          onImagesReady: function (swiper)
+          onProgress: function (swiper, progress)
+          onTouchStart: function (swiper, e)
+          onTouchMove: function (swiper, e)
+          onTouchMoveOpposite: function (swiper, e)
+          onTouchEnd: function (swiper, e)
+          onReachBeginning: function (swiper)
+          onReachEnd: function (swiper)
+          onSetTransition: function (swiper, duration)
+          onSetTranslate: function (swiper, translate)
+          onAutoplayStart: function (swiper)
+          onAutoplayStop: function (swiper),
+          onLazyImageLoad: function (swiper, slide, image)
+          onLazyImageReady: function (swiper, slide, image)
+          onKeyPress: function (swiper, keyCode)
+          */
 
         };
         var initialVirtualTranslate = params && params.virtualTranslate;
@@ -22345,7 +22350,7 @@
               var f = e.substring(0, 1);
               "." !== f && "#" !== f || (e = this.s.subHtmlSelectorRelative && !this.s.dynamic ? d.find(e).html() : a(e).html())
             } else e = "";
-            ".lg-sub-html" === this.s.appendSubHtmlTo ? c ? this.$outer.find(this.s.appendSubHtmlTo).load(c) : this.$outer.find(this.s.appendSubHtmlTo).html(e) : c ? this.$slide.eq(b).load(c) : this.$slide.eq(b).append(e), "undefined" != typeof e && null !== e && ("" === e ? this.$outer.find(this.s.appendSubHtmlTo).addClass("lg-empty-html") : this.$outer.find(this.s.appendSubHtmlTo).removeClass("lg-empty-html")), this.$el.trigger("onAfterAppendSubHtml.lg", [b])
+          ".lg-sub-html" === this.s.appendSubHtmlTo ? c ? this.$outer.find(this.s.appendSubHtmlTo).load(c) : this.$outer.find(this.s.appendSubHtmlTo).html(e) : c ? this.$slide.eq(b).load(c) : this.$slide.eq(b).append(e), "undefined" != typeof e && null !== e && ("" === e ? this.$outer.find(this.s.appendSubHtmlTo).addClass("lg-empty-html") : this.$outer.find(this.s.appendSubHtmlTo).removeClass("lg-empty-html")), this.$el.trigger("onAfterAppendSubHtml.lg", [b])
         }, b.prototype.preload = function(a) {
           var b = 1,
             c = 1;
@@ -22529,7 +22534,7 @@
           }, c.s.backdropDuration + 50)
         }, a.fn.lightGallery = function(c) {
           //BUG
-            return this.each(function() {
+          return this.each(function() {
             if (a.data(this, "lightGallery")) try {
               a(this).data("lightGallery").init()
             } catch (a) {

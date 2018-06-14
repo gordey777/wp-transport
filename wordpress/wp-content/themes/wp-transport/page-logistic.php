@@ -4,6 +4,7 @@ Template Name: Logistic Page
 Template Post Type: post, page
 */
 get_header(); ?>
+  <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
 
     <?php
@@ -27,7 +28,7 @@ get_header(); ?>
       <h1 class="page__header"><?php the_title(); ?></h1><?php edit_post_link(); ?>
       <div class="container-inner">
         <div class="wrapper">
-          <?php the_content(); ?>
+
           <div class="logistics">
             <?php if($logistic_children->have_posts()) : ?>
               <?php while($logistic_children->have_posts()): $logistic_children->the_post(); ?>
@@ -48,11 +49,13 @@ get_header(); ?>
             <?php endif; ?>
             <?php wp_reset_query(); ?>
           </div>
+          <br>
+          <?php the_content(); ?>
         </div>
       </div>
     </div>
   </div>
-
+  <?php endwhile; endif; ?>
 
 
 

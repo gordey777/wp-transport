@@ -60,6 +60,9 @@
 
             </div>
           </div>
+          <div>
+            <?php the_field('category_content', $curr_term); ?>
+          </div>
         </div>
       </div>
     </div>

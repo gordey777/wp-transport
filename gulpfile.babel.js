@@ -151,7 +151,7 @@ gulp.task('browserSync', function() {
   } else {
     args = {
       notify: false,
-      port: 9090,
+      port: 9092,
       proxy: config.domain,
       host: config.domain,
     }
