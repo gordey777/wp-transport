@@ -19,10 +19,23 @@
   <![endif]-->
   <!-- css + javascript -->
   <?php wp_head(); ?>
+
+  <?php $bgimage = get_field('bg-image', $front__id); ?>
+  <?php if ($bgimage){ ?>
+  <style>
+    .footer__bottom{
+      border-top: 0;
+    }
+    .belt-objects,
+    .dot-w{
+      background-image: url(<?php echo $bgimage['url'];?>);
+    }
+  </style>
+  <?php } ?>
+
 </head>
 
 <?php $front__id = (int)(get_option( 'page_on_front' )); ?>
-
 <body <?php body_class(); ?>>
   <header class="header dot-w">
     <div class="container">
