@@ -22,6 +22,7 @@ class Responsive_Lightbox_Frontend {
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ), 100 );
 		add_action( 'rl_before_gallery', array( $this, 'before_gallery' ), 10, 2 );
 		add_action( 'rl_after_gallery', array( $this, 'after_gallery' ), 10, 2 );
+		add_action( 'after_setup_theme', array( $this, 'woocommerce_gallery_init' ), 1000 );
 
 		// filters
 		add_filter( 'rl_gallery_container_class', array( $this, 'gallery_container_class' ), 10, 3 );
@@ -331,7 +332,7 @@ class Responsive_Lightbox_Frontend {
 		else
 			$title = esc_attr( wp_strip_all_tags( trim ( nl2br( $args['title'] ) ), true ) );
 
-		// add title and rl_title
+		// add title and rl_title if needed
 		if ( preg_match( '/<a.*? title=(?:\'|").*?(?:\'|").*?>/is', $link ) === 1 )
 			$link = preg_replace( '/(<a.*? title=(?:\'|")).*?((?:\'|").*?>)/s', '$1' . $title . '" data-rl_title="'.  $title .'$2', $link );
 		else
@@ -362,7 +363,7 @@ class Responsive_Lightbox_Frontend {
 			$caption = esc_attr( wp_strip_all_tags( trim( nl2br( $args['caption'] ) ), true ) );
 
 		// add rl_caption
-		$link = preg_replace( '/(<a.*?)>/s', '$1 data-rl_caption="'.  $caption .'">', $link );
+		$link = preg_replace( '/(<a.*?)>/s', '$1 data-rl_caption="'.  preg_quote( $caption ) .'">', $link );
 
 		if ( isset( $_GET['rl_gallery_no'], $_GET['rl_page'] ) )
 			$this->gallery_no = (int) $_GET['rl_gallery_no'];
@@ -547,13 +548,14 @@ class Responsive_Lightbox_Frontend {
      */
 	public function get_default_gallery_fields() {
 		$sizes = get_intermediate_image_sizes();
+		$sizes['full'] = 'full';
 
 		return array(
 			'size' => array(
 				'title' => __( 'Size', 'responsive-lightbox' ),
 				'type' => 'select',
 				'description' => __( 'Specify the image size to use for the thumbnail display.', 'responsive-lightbox' ),
-				'default' => 'thumbnail',
+				'default' => 'medium',
 				'options' => array_combine( $sizes, $sizes )
 			),
 			'link' => array(
@@ -752,10 +754,9 @@ class Responsive_Lightbox_Frontend {
 			if ( ! empty( $ids ) ) {
 				foreach ( $ids as $attachment_id ) {
 					// get thumbnail image data
-					$images[] = Responsive_Lightbox()->galleries->get_gallery_image_src( $attachment_id, $shortcode_atts['size'] );
+					$images[] = Responsive_Lightbox()->galleries->get_gallery_image_src( $attachment_id, $shortcode_atts['src_size'], $shortcode_atts['size'] );
 				}
 			}
-			
 		}
 
 		// apply adjustments, as per settings
@@ -780,48 +781,41 @@ class Responsive_Lightbox_Frontend {
 
 			// lightbox image title
 			$args['settings']['plugin']['gallery_image_title'] = ! empty( $shortcode_atts['lightbox_image_title'] ) ? ( $shortcode_atts['lightbox_image_title'] === 'global' ? Responsive_Lightbox()->options['settings']['gallery_image_title'] : $shortcode_atts['lightbox_image_title'] ) : Responsive_Lightbox()->options['settings']['gallery_image_title'];
-			
+
 			// lightbox image caption
 			$args['settings']['plugin']['gallery_image_caption'] = ! empty( $shortcode_atts['lightbox_image_caption'] ) ? ( $shortcode_atts['lightbox_image_caption'] === 'global' ? Responsive_Lightbox()->options['settings']['gallery_image_caption'] : $shortcode_atts['lightbox_image_caption'] ) : Responsive_Lightbox()->options['settings']['gallery_image_caption'];
 
 			// get gallery image link
 			$args['link'] = isset( $shortcode_atts['link'] ) ? $shortcode_atts['link'] : '';
 
+			// copy images
+			$images_tmp = $images;
+
 			// apply adjustments, according to gallery settings
-			foreach ( $images as $index => $image ) {
-				// set thumbnail data
-				$thumbnail_src = array( $image['thumbnail_url'], $image['thumbnail_width'], $image['thumbnail_height'] );
-				
-				$images[$index]['thumbnail_url'] = $thumbnail_src[0];
-				$images[$index]['thumbnail_width'] = $thumbnail_src[1];
-				$images[$index]['thumbnail_height'] = $thumbnail_src[2];
-				
+			foreach ( $images_tmp as $index => $image ) {
 				// assign image
-				$image = $images[$index] = array_merge( $image, Responsive_Lightbox()->galleries->get_gallery_image_src( $image, $shortcode_atts['src_size'], $shortcode_atts['size'] ) );
-				
-				$image_src = $args['src'] = array( $image['url'], $image['width'], $image['height'] );
-				$thumbnail_src = array( $image['thumbnail_url'], $image['thumbnail_width'], $image['thumbnail_height'] );
+				$new_image = $images[$index] = array_merge( $image, Responsive_Lightbox()->galleries->get_gallery_image_src( $image, $shortcode_atts['src_size'], $shortcode_atts['size'] ) );
+
+				// create image source data
+				$args['src'] = array( $new_image['url'], $new_image['width'], $new_image['height'] );
 
 				// set alt text
-				$images[$index]['alt'] = ! empty( $image['alt'] ) ? esc_attr( $image['alt'] ) : ( ! empty( $image['id'] ) ? get_post_meta( $image['id'], '_wp_attachment_image_alt', true ) : '' );
+				$images[$index]['alt'] = ! empty( $new_image['alt'] ) ? esc_attr( $new_image['alt'] ) : ( ! empty( $new_image['id'] ) ? get_post_meta( $new_image['id'], '_wp_attachment_image_alt', true ) : '' );
 
 				// set lightbox image title
 				if ( $args['settings']['plugin']['gallery_image_title'] === 'default' )
 					$images[$index]['title'] = $args['title'] = '';
 				else
-					$images[$index]['title'] = $args['title'] = ! empty( $image['id'] ) ? $this->get_attachment_title( $image['id'], apply_filters( 'rl_lightbox_attachment_image_title_arg', $args['settings']['plugin']['gallery_image_title'], $image['id'], $images[$index]['link'] ) ) : $image['title'];
+					$images[$index]['title'] = $args['title'] = ! empty( $new_image['id'] ) ? $this->get_attachment_title( $new_image['id'], apply_filters( 'rl_lightbox_attachment_image_title_arg', $args['settings']['plugin']['gallery_image_title'], $new_image['id'], $images[$index]['link'] ) ) : $new_image['title'];
 
 				// set lightbox image caption
 				if ( $args['settings']['plugin']['gallery_image_caption'] === 'default' )
 					$images[$index]['caption'] = $args['caption'] = '';
 				else
-					$images[$index]['caption'] = $args['caption'] = ! empty( $image['id'] ) ? $this->get_attachment_title( $image['id'], apply_filters( 'rl_lightbox_attachment_image_title_arg', $args['settings']['plugin']['gallery_image_caption'], $images[$index]['link'] ) ) : $image['caption'];
-
-				// set image link
-				$image_link = $this->get_gallery_image_link( $image['id'], $image_src, $thumbnail_src, $shortcode_atts );
+					$images[$index]['caption'] = $args['caption'] = ! empty( $new_image['id'] ) ? $this->get_attachment_title( $new_image['id'], apply_filters( 'rl_lightbox_attachment_image_title_arg', $args['settings']['plugin']['gallery_image_caption'], $images[$index]['link'] ) ) : $new_image['caption'];
 
 				// set image gallery link
-				$images[$index]['link'] = $this->lightbox_gallery_link( $image_link, $args );
+				$images[$index]['link'] = $this->lightbox_gallery_link( $this->get_gallery_image_link( $new_image['id'], $args['src'], array( $new_image['thumbnail_url'], $new_image['thumbnail_width'], $new_image['thumbnail_height'] ), $shortcode_atts ), $args );
 
 				// is lightbox active?
 				if ( isset( $shortcode_atts['lightbox_enable'] ) && $shortcode_atts['lightbox_enable'] === 0 )
@@ -1049,6 +1043,42 @@ class Responsive_Lightbox_Frontend {
 
 		return $html;
 	}
+	
+	/**
+	 * WooCommerce gallery init.
+	 */
+	public function woocommerce_gallery_init() {
+		if ( ( $priority = has_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails' ) ) != false && ! empty( Responsive_Lightbox()->options['settings']['default_woocommerce_gallery'] ) ) {
+			// remove default gallery
+			remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', $priority );
+
+			// handle product gallery
+			add_action( 'woocommerce_product_thumbnails', array( $this, 'woocommerce_gallery' ), $priority );
+		}
+	}
+	
+	/**
+	 * WooCommerce gallery support.
+	 * 
+	 * @global object $product
+	 * @return mixed
+	 */
+	public function woocommerce_gallery() {
+		global $product;
+		
+		$attachment_ids = array();
+
+		// WooCommerce 3.x
+		if ( method_exists( $product, 'get_gallery_image_ids' ) ) {
+			$attachment_ids = $product->get_gallery_image_ids();
+		// WooCommerce 2.x
+		} elseif ( method_exists( $product, 'get_gallery_attachment_ids' ) ) {
+			$attachment_ids = $product->get_gallery_attachment_ids();
+		}
+
+		if ( ! empty( $attachment_ids ) && is_array( $attachment_ids ) )
+			echo do_shortcode( '[gallery type="' . Responsive_Lightbox()->options['settings']['default_woocommerce_gallery'] . '" size="' . apply_filters( 'single_product_small_thumbnail_size', 'medium' ) . '" ids="' . implode( ',', $attachment_ids ) . '"]' );
+	}
 
 	/**
 	 * Get attachment title function
@@ -1095,10 +1125,12 @@ class Responsive_Lightbox_Frontend {
 		$url = ! empty( $url ) ? esc_url( $url ) : '';
 
 		// get cached data
-		$post_id = wp_cache_get( md5( $url ), 'rl-attachment_id_by_url' );
+		// $post_id = wp_cache_get( md5( $url ), 'rl-attachment_id_by_url' );
+		$post_ids = get_transient( 'rl-attachment_ids_by_url' );
+		$post_id = 0;
 
 		// cached url not found?
-		if ( $post_id === false ) {
+		if ( $post_ids === false || ! in_array( $url, array_keys( $post_ids ) ) ) {
 			$post_id = attachment_url_to_postid( $url );
 
 			if ( ! $post_id ) {
@@ -1115,10 +1147,57 @@ class Responsive_Lightbox_Frontend {
 			// set the cache expiration, 24 hours by default
 			$expire = absint( apply_filters( 'rl_object_cache_expire', DAY_IN_SECONDS ) );
 
-			wp_cache_set( md5( $url ), $post_id, 'rl-attachment_id_by_url', $expire );
+			// wp_cache_add( md5( $url ), $post_id, 'rl-attachment_id_by_url', $expire );
+
+			$post_ids[$url] = $post_id;
+
+			set_transient( 'rl-attachment_ids_by_url', $post_ids, $expire );
+		// cached url found
+		} elseif ( ! empty( $post_ids[$url] ) )
+			$post_id = absint( $post_ids[$url] );
+
+	    return (int) apply_filters( 'rl_get_attachment_id_by_url', $post_id, $url );
+	}
+
+	/**
+	 * Get image size by URL.
+	 *
+	 * @param string $url Image URL
+	 * @return array
+	 */
+	public function get_image_size_by_url( $url ) {
+		$url = ! empty( $url ) ? esc_url( $url ) : '';
+		$size = array( 0, 0 );
+
+		if ( ! empty( $url ) ) {
+			// get cached data
+			$image_sizes = get_transient( 'rl-image_sizes_by_url' );
+
+			// cached url not found?
+			if ( $image_sizes === false || ! in_array( $url, array_keys( $image_sizes ) ) || empty( $image_sizes[$url] ) ) {
+				if ( class_exists( 'Responsive_Lightbox_Fast_Image' ) ) {
+					// loading image
+					$image = new Responsive_Lightbox_Fast_Image( $url );
+
+					// get size
+					$size = $image->get_size();
+				} else {
+					// get size using php
+					$size = getimagesize( $url );
+				}
+
+				// set the cache expiration, 24 hours by default
+				$expire = absint( apply_filters( 'rl_object_cache_expire', DAY_IN_SECONDS ) );
+
+				$image_sizes[$url] = $size;
+
+				set_transient( 'rl-image_sizes_by_url', $image_sizes, $expire );
+			// cached url found
+			} elseif ( ! empty( $image_sizes[$url] ) )
+				$size = array_map( 'absint', $image_sizes[$url] );
 		}
 
-	    return (int) $post_id;
+		return apply_filters( 'rl_get_image_size_by_url', $size, $url );
 	}
 
 	/**
@@ -1780,7 +1859,7 @@ class Responsive_Lightbox_Frontend {
 		$atts = shortcode_atts( array_merge( $defaults, $field_atts ), $shortcode_atts, 'gallery' );
 
 		// sanitize gallery fields
-		$atts = Responsive_Lightbox()->frontend->sanitize_shortcode_args( $atts, $fields );
+		$atts = $this->sanitize_shortcode_args( $atts, $fields );
 
 		// break if it is not basic masonry gallery
 		if ( ! ( $atts['type'] === 'basicmasonry' || ( $atts['type'] === '' && ( ( $rl_gallery && Responsive_Lightbox()->options['settings']['builder_gallery'] === 'basicmasonry' ) || ( ! $rl_gallery && Responsive_Lightbox()->options['settings']['default_gallery'] === 'basicmasonry' ) ) ) ) )

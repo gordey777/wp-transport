@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: gallery, images, lightbox, photos, theme, photo, image, picture, slideshow, modal, overlay, video
 Requires at least: 4.0
 Tested up to: 4.9.5
-Stable tag: 2.0.2
+Stable tag: 2.0.4
 Requires PHP: 5.2.4
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
@@ -77,6 +77,17 @@ No questions yet.
 2. screenshot-2.jpg
 
 == Changelog ==
+
+= 2.0.4 =
+* Fix: Gallery sorting and orderby not working
+* Fix: Slow db query on post edit screen
+* Fix: WooCommerce gallery undefined method for get_gallery_image_ids
+* Fix: Uncaught Argument in preview_post_link function
+* Fix: Removed a callback to sanitize_textarea_field
+
+= 2.0.3 =
+* Fix: Gallery shortcode thumbnails not accepting size parameter
+* Fix: Basic templates for WooCommerce gallery 
 
 = 2.0.2 =
 * Fix: Default WordPress gallery issue
@@ -340,5 +351,7 @@ Initial release
 
 == Upgrade Notice ==
 
-= 2.0.2 =
-* Fix: Default WordPress gallery issue
+= 2.0.4 =
+* Fix: Gallery sorting and orderby not working
+* Fix: Slow db query on post edit screen
+* Fix: WooCommerce gallery undefined method for get_gallery_image_ids

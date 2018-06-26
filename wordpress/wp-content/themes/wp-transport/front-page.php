@@ -1,3 +1,4 @@
+<?php /* Template Name: About Front Page */ get_header(); ?>
 <?php /* Template Name: Home Page */ get_header(); ?>
 
 <?php if (have_posts()): while (have_posts()) : the_post(); ?>
@@ -7,41 +8,63 @@
   </div>
   <div class="container z-1">
 
-    <div class="spec-categories">
-      <div class="row">
-        <?php
-        $teh_cats = get_categories( array(
-          'child_of' => 9,
-          'parent' => 9,
-          'hide_empty' => 0
-        ) );
-        if( $teh_cats ){
-          foreach( $teh_cats as $cat ){
-          $curr__ID = $cat->cat_ID;
-          $curr_term = 'category_' . $curr__ID;
-          $curr__type = get_field('cat_type', $curr_term);
+          <?php if( have_rows('buner_nav') ): ?>
+            <div class="directions d-flex flex-wrap hidden-md-down">
 
+              <?php while ( have_rows('buner_nav') ) : the_row();
+                $abType = get_sub_field('about_link_type');
+                $aboutPage = get_sub_field('about_page');
+                $aboutCat = get_sub_field('about_category');
+                $holder = get_sub_field('img');
+                $bunner = get_sub_field('bunner');
 
-          if(get_field('cat_img', $curr_term)){
-            $thumb_url = get_field('cat_img', $curr_term)['sizes']['medium'];
-          } else {
-            $thumb_url = get_template_directory_uri() . '/img/noimage.jpg';
-          }
+                if($abType){
+                  $abLink = get_permalink($aboutPage);
+                  $abTitle = get_the_title($aboutPage);
+                }else {
+                  $abLink = get_category_link($aboutCat);
+                  $abTitle = get_cat_name($aboutCat);
+                } ?>
 
-          $teh_catID = $cat->term_id; ?>
-          <div class='looper col-sm-6 col-md-4 col-lg-2'>
+                <a href="<?php echo $abLink;?>" class="direction">
+                  <?php if (get_sub_field('bunner_style')){ ?>
+                    <div class="direction__cover" style="background-image: url(<?php echo $holder['url'];?>)"></div>
+                    <div class="direction__video">
+                      <video loop="" preload="none">
+                        <source src="<?php the_sub_field('video');?>" type="video/mp4"> Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  <?php } else { ?>
+                    <div class="direction__buner" style="background-image: url(<?php echo $bunner['url'];?>)"></div>
+                  <?php }?>
+                  <div class="direction__caption"><?php echo $abTitle;?></div>
+                  <div class="direction__bottom"><span>узнать больше</span></div>
+                </a>
+              <?php endwhile; ?>
+            </div>
+            <div class="directions d-flex flex-wrap hidden-lg-up">
+              <?php while ( have_rows('buner_nav') ) : the_row();
+                $abType = get_sub_field('about_link_type');
+                $aboutCat = get_sub_field('about_page');
+                $aboutPage = get_sub_field('about_category');
+                $holder = get_sub_field('img');
 
-            <a href="<?php echo get_category_link( $teh_catID ); ?>" title="<?php echo $cat->name; ?>" class="spec-categories__item">
-              <div class="spec-categories__item-cover" style="background-image: url(<?php echo $thumb_url; ?>)" ></div>
-              <div class="spec-categories__item-footer"><?php echo $cat->name; ?></div>
-            </a>
-          </div><!-- /looper -->
+                if($abType && !empty($aboutPage)){
+                  $abLink = get_permalink($aboutPage);
+                  $abTitle = get_the_title($aboutPage);
+                }else if(!empty($aboutCat)){
+                  $abLink = get_category_link($aboutCat);
+                  $abTitle = get_cat_name($aboutCat);
+                } ?>
 
-          <?php }
-        } ?>
-
-      </div>
-    </div>
+                  <a href="<?php echo $abLink;?>" class="direction">
+                    <div class="direction__cover" style="background-image: url(<?php echo $holder['sizes']['medium'];?>)"></div>
+                    <div class="direction__caption"><?php echo $abTitle;?></div>
+                    <div class="direction__bottom"><span>узнать больше</span></div>
+                  </a>
+                <?php endwhile; ?>
+              </div>
+          <?php endif; ?>
 
     <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
       <?php the_content(); ?>
@@ -87,7 +110,7 @@
   </div>
 
 
-  <?php $objargs = array(
+  <?php /*$objargs = array(
     'numberposts' => 4,
     'category'    => 18,
     'orderby'     => 'date',
@@ -95,8 +118,8 @@
     'post_type'   => 'post',
   );
 
-  $objposts = get_posts( $objargs );
-  if($objposts) : ?>
+  $objposts = get_posts( $objargs );*/ ?>
+  <?php if($objposts) : ?>
     <?php $k = 0; ?>
     <div class="belt-objects">
       <div class="belt-objects-container">

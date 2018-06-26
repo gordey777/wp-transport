@@ -126,6 +126,9 @@
 #rl-gallery-tab-design:before {
     content: "\f100";
 }
+#rl-gallery-tab-paging:before {
+    content: "\f333";
+}
 #rl-gallery-tab-lightbox:before {
     content: "\f128";
 }

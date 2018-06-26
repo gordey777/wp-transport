@@ -69,11 +69,15 @@
                       <a rel="nofollow" href="<?php the_permalink(); ?>" class="spec-list__item-more">Узнать больше</a>
                     </div>
                     <div class="spec-list__item-body mb-3">
-                      <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="spec-list__item-preview" <?php if ( has_post_thumbnail()) { ?>
-                                                                                                                            style="background-image: url(<?php echo the_post_thumbnail_url('medium'); ?>)"
-                                                                                                                          <?php } else { ?>
-                                                                                                                            style="background-image: url(<?php echo catchFirstImage(); ?>)"
-                                                                                                                          <?php } ?>></a>
+						<?php if ( has_post_thumbnail()) {
+							$thumb_url = the_post_thumbnail_url(get_the_ID(), 'medium');
+                      	} else if(get_field('teh_gallery')) {
+	                       $thumb_url =  get_field('teh_gallery')[0]['sizes']['medium'];
+                      	} else {
+	                       $thumb_url =  catchFirstImage();
+	                      } ?>
+
+                      <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="spec-list__item-preview" style="background-image: url(<?php echo $thumb_url; ?>)">></a>
 
                       <div class="spec-list__item-content">
                         <?php if( have_rows('teh_pricec') ): ?>

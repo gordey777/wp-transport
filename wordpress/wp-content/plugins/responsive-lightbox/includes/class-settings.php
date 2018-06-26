@@ -217,7 +217,7 @@ class Responsive_Lightbox_Settings {
 						'section' => 'responsive_lightbox_settings',
 						'type' => 'radio',
 						'label' => '',
-						'description' => sprintf(__( 'Select your preffered ligthbox effect script or get our <a href="%s">premium extensions</a>.', 'responsive-lightbox' ), wp_nonce_url( add_query_arg( array( 'action' => 'rl-hide-notice' ), admin_url( 'admin.php?page=responsive-lightbox-addons' ) ), 'rl_action', 'rl_nonce' ) ),
+						'description' => sprintf(__( 'Select your preferred ligthbox effect script or get our <a href="%s">premium extensions</a>.', 'responsive-lightbox' ), wp_nonce_url( add_query_arg( array( 'action' => 'rl-hide-notice' ), admin_url( 'admin.php?page=responsive-lightbox-addons' ) ), 'rl_action', 'rl_nonce' ) ),
 						'options' => $scripts
 						// 'options_cb' => '',
 						// 'id' => '',
@@ -265,22 +265,22 @@ class Responsive_Lightbox_Settings {
 						'title' => __( 'WordPress gallery', 'responsive-lightbox' ),
 						'section' => 'responsive_lightbox_settings',
 						'type' => 'radio',
-						'description' => __( 'Select your preffered default WordPress gallery style.', 'responsive-lightbox' ),
+						'description' => __( 'Select your preferred default WordPress gallery style.', 'responsive-lightbox' ),
 						'options' => $galleries
 					),
 					'builder_gallery' => array(
 						'title' => __( 'Builder gallery', 'responsive-lightbox' ),
 						'section' => 'responsive_lightbox_settings',
 						'type' => 'radio',
-						'description' => __( 'Select your preffered default builder gallery style.', 'responsive-lightbox' ),
+						'description' => __( 'Select your preferred default builder gallery style.', 'responsive-lightbox' ),
 						'options' => $builder_galleries
 					),
 					'default_woocommerce_gallery' => array(
-						'title' => __( 'WooCommerce gallery', 'rl-justified-gallery' ),
+						'title' => __( 'WooCommerce gallery', 'responsive-lightbox' ),
 						'section' => 'responsive_lightbox_settings',
 						'type' => 'radio',
 						'disabled' => ! class_exists( 'WooCommerce' ),
-						'description' => __( 'Select your preffered gallery style for WooCommerce product gallery.', 'responsive-lightbox' ),
+						'description' => __( 'Select your preferred gallery style for WooCommerce product gallery.', 'responsive-lightbox' ),
 						'options' => $galleries
 					),
 					'gallery_image_size' => array(
@@ -745,21 +745,21 @@ class Responsive_Lightbox_Settings {
 								'min' => 0,
 								'max' => 6,
 								'default' => 4,
-								'append' => __( 'large devices / desktops (≥1200px)', 'responsive-lightbox' )
+								'append' => __( 'large devices / desktops (?1200px)', 'responsive-lightbox' )
 							),
 							'columns_md' => array(
 								'type' => 'number',
 								'min' => 0,
 								'max' => 6,
 								'default' => 3,
-								'append' => __( 'medium devices / desktops (≥992px)', 'responsive-lightbox' )
+								'append' => __( 'medium devices / desktops (?992px)', 'responsive-lightbox' )
 							),
 							'columns_sm' => array(
 								'type' => 'number',
 								'min' => 0,
 								'max' => 6,
 								'default' => 2,
-								'append' => __( 'small devices / tablets (≥768px)', 'responsive-lightbox' )
+								'append' => __( 'small devices / tablets (?768px)', 'responsive-lightbox' )
 							),
 							'columns_xs' => array(
 								'type' => 'number',

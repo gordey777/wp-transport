@@ -1,13 +1,10 @@
 <?php
-
 /**
  * Responsive Lightbox public functions
  *
  * Functions available for users and developers. May not be replaced.
  *
- * @author 	Digital Factory
- * @package Responsive Lightbox/Functions
- * @version
+ * @since 2.0
  */
 if ( ! defined( 'ABSPATH' ) )
 	exit;
@@ -87,6 +84,26 @@ function rl_get_gallery_images( $gallery_id, $args ) {
  */
 function rl_add_lightbox( $content ) {
 	return Responsive_Lightbox()->frontend->add_lightbox( $content );
+}
+
+/**
+ * Get attachment id by url.
+ * 
+ * @param string $url
+ * @return int
+ */
+function rl_get_attachment_id_by_url( $url ) {
+	return Responsive_Lightbox()->frontend->get_attachment_id_by_url( $url );
+}
+
+/**
+ * Get image size by url.
+ *
+ * @param string $url Image url
+ * @return string
+ */
+function rl_get_image_size_by_url( $url ) {
+	return Responsive_Lightbox()->frontend->get_image_size_by_url( $url );
 }
 
 /**

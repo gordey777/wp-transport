@@ -167,10 +167,13 @@ get_header(); ?>
                   </div>
                 </div>
                 <div class="col-xl-4">
-                    <div class="list-simple">
-                        <div class="list-simple__header"><?php the_field('sale_title'); ?></div>
-                        <?php the_field('sale_content'); ?>
-                    </div>
+                  <div class="list-simple">
+                    <div class="list-simple__header">Скидки в зависимости от:</div>
+                    <ul>
+                      <li>От объема</li>
+                      <li>Постоянным клиентам и партнерам</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 

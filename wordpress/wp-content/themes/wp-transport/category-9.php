@@ -55,7 +55,7 @@
               <?php endwhile;
             } ?>
               <div class="clearfix"></div>
-              <?php get_template_part('pagination'); ?>
+              <?php //get_template_part('pagination'); ?>
 
 
             </div>
